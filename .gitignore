@@ -1,0 +1,4 @@
+.DS_Store
+app/config/config.php
+public/error_log
+uploads

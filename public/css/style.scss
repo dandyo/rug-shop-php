@@ -1,0 +1,64 @@
+@import "sass/icomoon";
+@import "sass/margin";
+@import "sass/padding";
+
+img {
+     max-width: 100%;
+}
+
+select.form-control {
+     appearance: listbox;
+}
+
+.form-label {
+     font-weight: bold;
+}
+
+.bold {
+     font-weight: bold;
+}
+
+.image-preview {
+     max-width: 300px;
+}
+
+.radio-colors {
+     margin-right: 12px;
+     margin-bottom: 12px;
+     display: inline-block;
+
+     label {
+          border: 1px solid rgba(#000, 0.2);
+          display: inline-flex;
+          align-items: center;
+          padding: 3px 5px;
+          cursor: pointer;
+     }
+
+     input {
+          display: none;
+
+          &:checked+label {
+               border: 1px solid #000;
+               background-color: rgba(#198754, 0.3);
+          }
+     }
+
+     i {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border: 1px solid #000;
+          margin-right: 6px;
+     }
+
+     span {
+          text-transform: uppercase;
+     }
+}
+
+.niceCountryInputMenu {
+     border-color: #dee2e6;
+     border-radius: 0.375rem;
+     padding: 6px 8px;
+}
