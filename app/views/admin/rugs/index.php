@@ -16,10 +16,10 @@
     <div class="col-lg-6">
         <form action="" method="get">
             <div class="row">
-                <div class="col-md-5 form-group">
+                <div class="col col-md-5 form-group">
                     <input type="text" name="search" class="form-control" placeholder="Search" value="<?= $data['search']; ?>">
                 </div>
-                <div class="col-auto px-0">
+                <div class="col-auto ps-0">
                     <input type="submit" value="Go" class="btn btn-secondary" />
                 </div>
             </div>
@@ -44,9 +44,10 @@
                 <td><?= $rug->location; ?></td>
                 <td><?= $rug->asset_number; ?></td>
                 <td><?= $rug->design_name; ?></td>
-                <td><?= $rug->size_width_in; ?>' x <?= $rug->size_height_in; ?>"<br><?= $rug->size_width_m; ?>m x <?= $rug->size_height_m; ?>m</td>
+                <td><?= $rug->size_width_ft; ?>' <?= $rug->size_width_in; ?>" x <?= $rug->size_height_ft; ?>' <?= $rug->size_height_in; ?>"<br><?= $rug->size_width_m; ?>m x <?= $rug->size_height_m; ?>m</td>
                 <td>
-                    <a href="<?= URLROOT; ?>admin/rugs/edit/<?= $rug->id; ?>" class="btn btn-primary">Edit</a>
+                    <a data-src="<?= URLROOT; ?>admin/rugs/show/<?= $rug->id; ?>" data-type="ajax" data-fancybox class="btn btn-primary"><span class="icon-info"></span></a>
+                    <a href="<?= URLROOT; ?>admin/rugs/edit/<?= $rug->id; ?>" class="btn btn-success">Edit</a>
                     <a href="<?= URLROOT; ?>admin/rugs/delete/<?= $rug->id; ?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>

@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Trajan';
+    src: url('../fonts/trajan/Trajan Bold.ttf') format('ttf'),
+        url('../fonts/trajan/TrajanBold.woff2') format('woff2'),
+        url('../fonts/trajan/TrajanBold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trajan';
+    src: url('../fonts/trajan/Trajan.woff2') format('woff2'),
+        url('../fonts/trajan/Trajan.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}

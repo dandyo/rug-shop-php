@@ -1,0 +1,53 @@
+.btn {
+	border-radius: 0;
+	outline: 0 none !important;
+	border: 0 none;
+	transition: all .25s ease;
+	font-weight: 500;
+
+	&:hover,
+	&:focus {
+		outline: 0 none !important;
+		box-shadow: none !important;
+	}
+
+	&:active {
+		box-shadow: none !important;
+	}
+}
+
+.btn-white-outline {
+	border: 1px solid #fff;
+	background-color: transparent;
+	color: #fff;
+
+	&:hover,
+	&:focus {
+		background-color: #fff;
+		color: $brown;
+	}
+}
+
+.btn-black-outline {
+	border: 2px solid $brown;
+	background-color: #f5f1ec;
+	color: $brown;
+	font-weight: 500;
+
+	&:hover,
+	&:focus {
+		background-color: $brown;
+		color: #fff;
+	}
+}
+
+.btn-brown {
+	background-color: #b3775f;
+	color: #fff;
+
+	&:hover,
+	&:focus {
+		background-color: darken(#b3775f, 7%);
+		color: #fff;
+	}
+}

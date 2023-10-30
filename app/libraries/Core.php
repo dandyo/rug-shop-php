@@ -15,7 +15,7 @@ class Core
     {
         $url = $this->geturl();
 
-        if ($url[0] == 'admin') {
+        if (isset($url[0]) && $url[0] == 'admin') {
             $this->currentController = 'Admin';
 
             //Look for controllers

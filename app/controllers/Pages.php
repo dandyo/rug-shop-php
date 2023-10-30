@@ -7,8 +7,11 @@
  */
 class Pages extends Controller
 {
+    private $rugModel;
+
     public function __construct()
     {
+        $this->rugModel = $this->model('Rug');
     }
     public function about()
     {
@@ -20,13 +23,25 @@ class Pages extends Controller
     }
     public function Index(Type $var = null)
     {
-        // if (isLoggedIn()) {
-        //     redirect('posts');
-        // }
-        $data = [
-            'title' => 'Shop',
-            'description' => ""
-        ];
-        $this->view('pages/index', $data);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $params = $_GET;
+
+            // print_r($params);           
+
+            $rugs = $this->rugModel->refineSearch($params);
+            $data = [
+                'rugs' => $rugs,
+                'params' => $params
+            ];
+
+            $this->view('pages/index', $data);
+        } else {
+            $rugs = $this->rugModel->getRugs();
+            $data = [
+                'rugs' => $rugs
+            ];
+            $this->view('pages/index', $data);
+        }
     }
 }

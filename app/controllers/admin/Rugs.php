@@ -18,8 +18,6 @@ class Rugs extends Controller
     }
     public function index()
     {
-
-
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (isset($_GET['search'])) {
                 $key = $_GET['search'];
@@ -78,6 +76,8 @@ class Rugs extends Controller
                 'design_name' => trim($_POST['design_name']),
                 'shape' => trim($_POST['shape']),
                 'style' => trim($_POST['style']),
+                'size_width_ft' => trim($_POST['size_width_ft']),
+                'size_height_ft' => trim($_POST['size_height_ft']),
                 'size_width_in' => trim($_POST['size_width_in']),
                 'size_height_in' => trim($_POST['size_height_in']),
                 'size_width_m' => trim($_POST['size_width_m']),
@@ -193,6 +193,8 @@ class Rugs extends Controller
                 'design_name' => trim($_POST['design_name']),
                 'shape' => trim($_POST['shape']),
                 'style' => trim($_POST['style']),
+                'size_width_ft' => trim($_POST['size_width_ft']),
+                'size_height_ft' => trim($_POST['size_height_ft']),
                 'size_width_in' => trim($_POST['size_width_in']),
                 'size_height_in' => trim($_POST['size_height_in']),
                 'size_width_m' => trim($_POST['size_width_m']),
@@ -326,6 +328,15 @@ class Rugs extends Controller
             ];
             $this->view('admin/rugs/delete', $data);
         }
+    }
+
+    public function show($id)
+    {
+        $rug = $this->rugModel->show($id);
+        $data = [
+            'rug' => $rug
+        ];
+        $this->view('admin/rugs/show', $data);
     }
 
     public function removeimg()
