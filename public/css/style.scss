@@ -25,6 +25,13 @@ select.form-control {
 .rug-item-image {
     // margin-bottom: 1rem;
 
+    img {
+        width: 100%;
+        display: block;
+        aspect-ratio: 2/2.5;
+        object-fit: cover;
+    }
+
     a {
         display: block;
     }
@@ -32,8 +39,9 @@ select.form-control {
 
 .rug-item-desc {
     text-align: center;
-    padding: 1rem;
+    padding: .75rem;
     background-color: #fff;
+    font-size: .8rem;
 }
 
 .search-form-wrap {
@@ -210,4 +218,38 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     bottom: -1px;
     height: 50%;
+}
+
+.cart-wrap {
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.cart-items {
+    .rug-item {
+        display: flex;
+        margin-bottom: 1rem;
+
+        .rug-item-image {
+            max-width: 50%;
+
+            img {
+                aspect-ratio: 2/2.5;
+                object-fit: cover;
+            }
+        }
+
+        .rug-item-desc {
+            width: 100%;
+            max-width: 50%;
+            padding: 0 1rem;
+            font-size: .8rem;
+        }
+
+        .cart-item-remove {
+            display: inline-block;
+            margin-top: 10px;
+            color: red;
+        }
+    }
 }

@@ -21,7 +21,7 @@ class Pages extends Controller
         ];
         $this->view('pages/about', $data);
     }
-    public function Index(Type $var = null)
+    public function Index()
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
