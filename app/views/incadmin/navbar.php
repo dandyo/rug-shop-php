@@ -14,6 +14,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= URLROOT ?>admin/rugs">Rugs</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= URLROOT ?>admin/orders">Orders</a>
+                </li>
+                <?php if ($_SESSION['role'] == 'admin') { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= URLROOT ?>admin/settings">Settings</a>
+                    </li>
+                <?php } ?>
             </ul>
             <ul class="navbar-nav ms-auto">
                 <?php if (isset($_SESSION['user_id'])) : ?> <li class="nav-item active">

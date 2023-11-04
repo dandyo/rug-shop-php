@@ -31,7 +31,7 @@
             <p>No items</p>
         </div>
         <div class="cart-checkout-btn" style="<?= (!isset($_SESSION["cart_item"]) && empty($_SESSION["cart_item"])) ? 'display:none;' : 'display:block;' ?>">
-            <a href="<?= URLROOT; ?>cart/checkout" class="btn btn-brown w-100">Ask for quote</a>
+            <a href="<?= URLROOT; ?>cart/checkout" class="btn btn-brown w-100">Request quote</a>
         </div>
     </div>
 </div>

@@ -20,11 +20,28 @@ class Rugs extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (isset($_GET['search'])) {
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                } else {
+                    $page = 1;
+                }
+
+                $no_of_records_per_page = 10;
+
                 $key = $_GET['search'];
                 $rugs = $this->rugModel->searchRugs($key);
+
+                $total_rows = count($rugs);
+                $offset = ($page - 1) * $no_of_records_per_page;
+                $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+                $rugs2 = $this->rugModel->searchRugsPage($key, $offset, $no_of_records_per_page);
+
                 $data = [
                     'rugs' => $rugs,
-                    'search' => $key
+                    'search' => $key,
+                    'page' => $page,
+                    'total_pages' => $total_pages
                 ];
 
                 $this->view('admin/rugs/index', $data);
@@ -91,7 +108,7 @@ class Rugs extends Controller
                 'construction' => trim($_POST['construction']),
                 'country' => trim($_POST['country']),
                 'image' => $_FILES['image'],
-                'description' => $_FILES['description'],
+                'description' => trim($_POST['description']),
                 'new_image' => '',
                 'asset_number_err' => '',
                 'primary_color_err' => '',
@@ -126,7 +143,7 @@ class Rugs extends Controller
                             $data['image_err'] = "Error during uploading new image, try again later.";
                         }
 
-                        $extsAllowed = array('jpg', 'jpeg', 'png'); //allowed extensions
+                        $extsAllowed = array('jpg', 'jpeg', 'png', 'JPG', 'PNG', 'JPEG'); //allowed extensions
                         $uploadedfile = $data["image"]["name"];
                         $extension = pathinfo($uploadedfile, PATHINFO_EXTENSION);
 

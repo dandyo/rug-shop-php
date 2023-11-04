@@ -2,12 +2,10 @@
 
 <div class="row mb-4 align-items-center">
     <div class="col-auto">
-        <h1>Rugs</h1>
+        <h1>Orders</h1>
     </div>
     <div class="col-md-6">
-        <a href="<?= URLROOT; ?>admin/rugs/add" class="btn btn-primary pull-right">
-            <i class="icon-plus"></i> Add Rug
-        </a>
+
     </div>
 </div>
 
@@ -29,26 +27,32 @@
 <table class="table mb-4 mb-md-5">
     <thead>
         <tr>
-            <th>Image</th>
-            <th>Location</th>
-            <th>Asset #</th>
-            <th>Design</th>
-            <th>Size</th>
-            <th>Action</th>
+            <th>Status</th>
+            <th>Name</th>
+            <th>Adress</th>
+            <th>Cart</th>
+            <th>Date</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($data['rugs'] as $rug) : ?>
-            <tr>
-                <td><img src="<?= URLROOT . 'uploads/'; ?><?= $rug->image; ?>" alt="" width="100"></td>
-                <td><?= $rug->location; ?></td>
-                <td><?= $rug->asset_number; ?></td>
-                <td><?= $rug->design_name; ?></td>
-                <td><?= $rug->size_width_ft; ?>' <?= $rug->size_width_in; ?>" x <?= $rug->size_height_ft; ?>' <?= $rug->size_height_in; ?>"<br><?= $rug->size_width_m; ?>m x <?= $rug->size_height_m; ?>m</td>
+        <?php foreach ($data['orders'] as $order) :
+            $cart = 0;
+            if (!empty($order->cart)) {
+                $cart = unserialize($order->cart);
+                $cart = count($cart);
+            }
+        ?>
+            <tr data-id="<?= $order->id; ?>">
+                <td><?= $order->status; ?></td>
+                <td><?= $order->name; ?></td>
+                <td><?= $order->address1 . ', '; ?> <?= ($order->address2) ? $order->address2 . ", " : ""; ?><?= $order->city . ', ' . $order->state . ' ' . $order->zip; ?></td>
+                <td><?php echo $cart; ?></td>
+                <td><?= date("M j, Y h:i:s A", strtotime($order->created_at)); ?></td>
                 <td>
-                    <a data-src="<?= URLROOT; ?>admin/rugs/show/<?= $rug->id; ?>" data-type="ajax" data-fancybox class="btn btn-primary"><span class="icon-info"></span></a>
-                    <a href="<?= URLROOT; ?>admin/rugs/edit/<?= $rug->id; ?>" class="btn btn-success">Edit</a>
-                    <a href="<?= URLROOT; ?>admin/rugs/delete/<?= $rug->id; ?>" class="btn btn-danger">Delete</a>
+                    <a data-src="<?= URLROOT; ?>admin/orders/show/<?= $order->id; ?>" data-type="ajax" data-fancybox class="btn btn-primary"><span class="icon-info"></span></a>
+                    <a href="<?= URLROOT; ?>admin/orders/edit/<?= $order->id; ?>" class="btn btn-success">Edit</a>
+                    <a href="<?= URLROOT; ?>admin/orders/delete/<?= $order->id; ?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -64,6 +68,7 @@
     if (isset($data['page'])) {
         $prev = (int)$data['page'] - 1;
     }
+
     $pageLink = '?page=';
 
     if (!empty($data['search'])) {

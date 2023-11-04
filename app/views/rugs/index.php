@@ -16,11 +16,11 @@
                     <tbody>
                         <tr>
                             <td>Size in feet:</td>
-                            <td><?= $data['rug']->size_width_in; ?> x <?= $data['rug']->size_height_in; ?></td>
+                            <td><?= $data['rug']->size_width_ft; ?>' <?= $data['rug']->size_width_in; ?>" x <?= $data['rug']->size_height_ft; ?>' <?= $data['rug']->size_height_in; ?>"</td>
                         </tr>
                         <tr>
                             <td>Size in meter:</td>
-                            <td><?= $data['rug']->size_width_m; ?>m x <?= $data['rug']->size_height_m; ?> </td>
+                            <td><?= $data['rug']->size_width_m; ?>m x <?= $data['rug']->size_height_m; ?>m</td>
                         </tr>
                         <tr>
                             <td>Construction:</td>
@@ -60,8 +60,7 @@
                         </tr>
                         <tr>
                             <td>Origin:</td>
-                            <td><? //= getCountryName($data['rug']->country); 
-                                ?> </td>
+                            <td><?= getCountryName($data['rug']->country); ?> </td>
                         </tr>
                         <tr>
                             <td colspan="2">

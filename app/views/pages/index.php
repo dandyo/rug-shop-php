@@ -50,6 +50,7 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
+                <div id="preloader"></div>
             </div>
 
             <?php require APPROOT . '/views/inc/cart.php'; ?>

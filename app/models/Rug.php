@@ -46,6 +46,18 @@ class Rug
         return $results;
     }
 
+    public function searchRugsPage($key, $offset = 0, $limit = 20)
+    {
+        $this->db->query("SELECT * 
+                          FROM rugs 
+                          WHERE asset_number LIKE '%$key%' OR 
+                          design_name LIKE '%$key%' OR 
+                          style LIKE '%$key%' OR 
+                          description LIKE '%$key%' LIMIT " . $offset . ", " . $limit);
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
     public function addRug($data)
     {
         $this->db->query('INSERT INTO rugs (location, asset_number, design_name, shape, style, size_width_ft, size_height_ft, size_width_in, size_height_in, size_width_m, size_height_m, sku, material, collection, primary_color, secondary_color, age, construction, country, image, description) VALUES(:location, :asset_number, :design_name, :shape, :style, :size_width_ft, :size_height_ft, :size_width_in, :size_height_in, :size_width_m, :size_height_m, :sku, :material, :collection, :primary_color, :secondary_color, :age, :construction, :country, :image, :description)');
@@ -287,6 +299,19 @@ class Rug
 
         $this->db->query('SELECT * FROM rugs' . $where);
 
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function getRugsIn($ids)
+    {
+        $cartIDS = unserialize($ids);
+
+        $this->db->query('SELECT *
+                          FROM rugs      
+                          WHERE id IN ("' . implode('","', $cartIDS) . '")
+                          ');
+        // $this->db->bind(':id', $id);
         $results = $this->db->resultSet();
         return $results;
     }

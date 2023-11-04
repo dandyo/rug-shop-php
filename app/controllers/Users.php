@@ -19,6 +19,7 @@ class Users extends Controller
             $data = [
                 'name' => trim($_POST['name']),
                 'email' => trim($_POST['email']),
+                'role' => trim($_POST['role']),
                 'password' => trim($_POST['password']),
                 'confirm_password' => trim($_POST['confirm_password']),
                 'name_err' => '',
@@ -158,13 +159,15 @@ class Users extends Controller
         $_SESSION['user_id'] = $user->id;
         $_SESSION['email'] = $user->email;
         $_SESSION['user_name'] = $user->name;
+        $_SESSION['role'] = $user->role;
         redirect('admin');
     }
     public function logout()
     {
         unset($_SESSION['user_id']);
-        unset($_SESSION['user_email']);
+        unset($_SESSION['email']);
         unset($_SESSION['user_name']);
+        unset($_SESSION['role']);
         session_destroy();
         redirect('admin/users/login');
     }

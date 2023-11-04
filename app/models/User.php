@@ -30,10 +30,11 @@ class User
 
     public function register($data)
     {
-        $this->db->query('INSERT INTO users (name, email, password) VALUES(:name, :email, :password)');
+        $this->db->query('INSERT INTO users (name, email, password, role) VALUES(:name, :email, :password, :role)');
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
+        $this->db->bind(':role', $data['role']);
 
         if ($this->db->execute()) {
             return true;
@@ -60,5 +61,57 @@ class User
 
         $row = $this->db->single();
         return $row;
+    }
+
+    public function getAllUsers()
+    {
+        $this->db->query("SELECT id, name, email, role FROM users");
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function update($data)
+    {
+        $this->db->query('UPDATE users SET name=:name, email=:email,role=:role WHERE id=:id');
+
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':role', $data['role']);
+        $this->db->bind(':id', $data['id']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateWithPassword($data)
+    {
+        $this->db->query('UPDATE users SET name=:name, email=:email,role=:role, password=:password WHERE id=:id');
+
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':role', $data['role']);
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':id', $data['id']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function delete($id)
+    {
+        $this->db->query('DELETE FROM users where id=:id');
+        $this->db->bind(':id', $id);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
