@@ -16,14 +16,20 @@
             <div class="form-group mb-3">
                 <label for="" class="form-label">Location</label>
                 <select name="location" class="form-control">
-                    <option value="Prescott" <?= ($data['rug']->location == 'Prescott') ? 'selected' : ''; ?>>Prescott</option>
-                    <option value="Scottsdale" <?= ($data['rug']->location == 'Scottsdale') ? 'selected' : ''; ?>>Scottsdale</option>
+                    <?php
+                    foreach ($location as $i):
+                        $selected = ($data['rug']->location == $i['value']) ? ' selected' : '';
+                        echo '<option value="' . $i['value'] . '"' . $selected . '>' . $i['value'] . '</option>';
+                    endforeach;
+                    ?>
                 </select>
             </div>
             <div class="form-group mb-3">
                 <label for="" class="form-label">Asset #</label>
                 <input type="text" name="asset_number" class="form-control" value="<?= $data['rug']->asset_number; ?>" required>
-                <span class="invalid-feedback"><?= $data['asset_number_err']; ?></span>
+                <span class="invalid-feedback">
+                    <?= $data['asset_number_err']; ?>
+                </span>
             </div>
             <div class="form-group mb-3">
                 <label for="" class="form-label">Design name</label>
@@ -34,9 +40,9 @@
                 <label for="" class="form-label">Style</label>
                 <select name="style" class="form-control" required>
                     <?php
-                    foreach ($style as $i) :
-                        $selected = ($data['rug']->style == $i) ? ' selected' : '';
-                        echo '<option value="' . $i . '"' . $selected . '>' . $i . '</option>';
+                    foreach ($style as $i):
+                        $selected = ($data['rug']->style == $i['value']) ? ' selected' : '';
+                        echo '<option value="' . $i['value'] . '"' . $selected . '>' . $i['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -46,10 +52,10 @@
                 <label for="" class="form-label">Shape</label>
                 <select name="shape" class="form-control">
                     <?php
-                    unset($shape[0]);
-                    foreach ($shape as $i) :
-                        $selected = ($data['rug']->shape == $i) ? ' selected' : '';
-                        echo '<option value="' . $i . '"' . $selected . '>' . $i . '</option>';
+                    // unset($shape[0]);
+                    foreach ($shape as $i):
+                        $selected = ($data['rug']->shape == $i['value']) ? ' selected' : '';
+                        echo '<option value="' . $i['value'] . '"' . $selected . '>' . $i['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -110,9 +116,9 @@
                 <label for="" class="form-label">Material</label>
                 <select name="material" class="form-control" required>
                     <?php
-                    foreach ($material as $m) :
-                        $selected = ($data['rug']->material == $m) ? ' selected' : '';
-                        echo '<option value="' . $m . '"' . $selected . '>' . $m . '</option>';
+                    foreach ($material as $m):
+                        $selected = ($data['rug']->material == $m['value']) ? ' selected' : '';
+                        echo '<option value="' . $m['value'] . '"' . $selected . '>' . $m['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -122,9 +128,9 @@
                 <label for="" class="form-label">Collections</label>
                 <select name="collection" class="form-control" required>
                     <?php
-                    foreach ($collection as $c) :
-                        $selected = ($data['rug']->collection == $c) ? ' selected' : '';
-                        echo '<option value="' . $c . '"' . $selected . '>' . $c . '</option>';
+                    foreach ($collection as $c):
+                        $selected = ($data['rug']->collection == $c['value']) ? ' selected' : '';
+                        echo '<option value="' . $c['value'] . '"' . $selected . '>' . $c['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -137,9 +143,9 @@
                 </select> -->
                 <div class="colors-selector-wrap">
                     <?php
-                    foreach ($colors as $i => $c) :
+                    foreach ($colors as $i => $c):
                         $checked = ($data['rug']->primary_color == $c['name']) ? ' checked' : '';
-                        echo '<span class="radio-colors" data-i="' . $i . '"><input type="radio" name="primary_color" value="' . $c['name'] . '" id="pc-' . $i . '"' . $checked . ' /><label for="pc-' . $i . '"> <i style="background:' . $c['color'] . '"></i><span>' . $c['name'] . '</span></label></span>';
+                        echo '<span class="radio-colors" data-i="' . $i . '"><input type="radio" name="primary_color" value="' . $c['name'] . '" id="pc-' . $i . '"' . $checked . ' /><label for="pc-' . $i . '"> <i style="background:' . $c['value'] . '"></i><span>' . $c['name'] . '</span></label></span>';
                     endforeach;
                     ?>
                 </div>
@@ -149,9 +155,9 @@
                 <label for="" class="form-label">Secondary Color</label>
                 <div class="colors-selector-wrap">
                     <?php
-                    foreach ($colors as $i => $c) :
+                    foreach ($colors as $i => $c):
                         $checked = ($data['rug']->secondary_color == $c['name']) ? ' checked' : '';
-                        echo '<span class="radio-colors" data-i="' . $i . '"><input type="radio" name="secondary_color" value="' . $c['name'] . '" id="sc-' . $i . '"' . $checked . ' /><label for="sc-' . $i . '"> <i style="background:' . $c['color'] . '"></i><span>' . $c['name'] . '</span></label></span>';
+                        echo '<span class="radio-colors" data-i="' . $i . '"><input type="radio" name="secondary_color" value="' . $c['name'] . '" id="sc-' . $i . '"' . $checked . ' /><label for="sc-' . $i . '"> <i style="background:' . $c['value'] . '"></i><span>' . $c['name'] . '</span></label></span>';
                     endforeach;
                     ?>
                 </div>
@@ -161,9 +167,9 @@
                 <label for="" class="form-label">Age</label>
                 <select name="age" class="form-control" required>
                     <?php
-                    foreach ($age as $i) :
-                        $selected = ($data['rug']->age == $i) ? ' selected' : '';
-                        echo '<option value="' . $i . '"' . $selected . '>' . $i . '</option>';
+                    foreach ($age as $i):
+                        $selected = ($data['rug']->age == $i['value']) ? ' selected' : '';
+                        echo '<option value="' . $i['value'] . '"' . $selected . '>' . $i['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -173,9 +179,9 @@
                 <label for="" class="form-label">Construction</label>
                 <select name="construction" class="form-control" required>
                     <?php
-                    foreach ($construction as $c) :
-                        $selected = ($data['rug']->construction == $c) ? ' selected' : '';
-                        echo '<option value="' . $c . '"' . $selected . '>' . $c . '</option>';
+                    foreach ($construction as $c):
+                        $selected = ($data['rug']->construction == $c['value']) ? ' selected' : '';
+                        echo '<option value="' . $c['value'] . '"' . $selected . '>' . $c['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -207,7 +213,9 @@
                     </div>
                 </div>
 
-                <span class="invalid-feedback"><?= $data['image_err']; ?></span>
+                <span class="invalid-feedback">
+                    <?= $data['image_err']; ?>
+                </span>
             </div>
 
             <div class="form-group mb-3">

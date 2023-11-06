@@ -18,14 +18,19 @@
             <div class="form-group mb-3">
                 <label for="" class="form-label">Location</label>
                 <select name="location" class="form-control">
-                    <option value="Prescott">Prescott</option>
-                    <option value="Scottsdale">Scottsdale</option>
+                    <?php
+                    foreach ($location as $i):
+                        echo '<option value="' . $i['value'] . '">' . $i['value'] . '</option>';
+                    endforeach;
+                    ?>
                 </select>
             </div>
             <div class="form-group mb-3">
                 <label for="" class="form-label">Asset #</label>
                 <input type="text" name="asset_number" class="form-control <?= (!empty($data['asset_number_err'])) ? 'is-invalid' : ''; ?>" value="<?= $data['asset_number']; ?>" required>
-                <span class="invalid-feedback"><?= $data['asset_number_err']; ?></span>
+                <span class="invalid-feedback">
+                    <?= $data['asset_number_err']; ?>
+                </span>
             </div>
             <div class="form-group mb-3">
                 <label for="" class="form-label">Design name</label>
@@ -36,8 +41,8 @@
                 <label for="" class="form-label">Style</label>
                 <select name="style" class="form-control" required>
                     <?php
-                    foreach ($style as $c) :
-                        echo '<option value="' . $c . '">' . $c . '</option>';
+                    foreach ($style as $c):
+                        echo '<option value="' . $c['value'] . '">' . $c['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -48,8 +53,8 @@
                 <select name="shape" class="form-control">
                     <?php
                     unset($shape[0]);
-                    foreach ($shape as $c) :
-                        echo '<option value="' . $c . '">' . $c . '</option>';
+                    foreach ($shape as $c):
+                        echo '<option value="' . $c['value'] . '">' . $c['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -110,8 +115,8 @@
                 <label for="" class="form-label">Material</label>
                 <select name="material" class="form-control" required>
                     <?php
-                    foreach ($material as $c) :
-                        echo '<option value="' . $c . '">' . $c . '</option>';
+                    foreach ($material as $c):
+                        echo '<option value="' . $c['value'] . '">' . $c['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -121,8 +126,8 @@
                 <label for="" class="form-label">Collections</label>
                 <select name="collection" class="form-control" required>
                     <?php
-                    foreach ($collection as $c) :
-                        echo '<option value="' . $c . '">' . $c . '</option>';
+                    foreach ($collection as $c):
+                        echo '<option value="' . $c['value'] . '">' . $c['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -135,8 +140,8 @@
                 </select> -->
                 <div class="colors-selector-wrap">
                     <?php
-                    foreach ($colors as $i => $c) :
-                        echo '<span class="radio-colors" data-i="' . $i . '"><input type="radio" name="primary_color" value="' . $c['name'] . '" id="pc-' . $i . '" /><label for="pc-' . $i . '"> <i style="background:' . $c['color'] . '"></i><span>' . $c['name'] . '</span></label></span>';
+                    foreach ($colors as $i => $c):
+                        echo '<span class="radio-colors" data-i="' . $i . '"><input type="radio" name="primary_color" value="' . $c['name'] . '" id="pc-' . $i . '" /><label for="pc-' . $i . '"> <i style="background:' . $c['value'] . '"></i><span>' . $c['name'] . '</span></label></span>';
                     endforeach;
                     ?>
                 </div>
@@ -146,8 +151,8 @@
                 <label for="" class="form-label">Secondary Color</label>
                 <div class="colors-selector-wrap">
                     <?php
-                    foreach ($colors as $i => $c) :
-                        echo '<span class="radio-colors" data-i="' . $i . '"><input type="radio" name="secondary_color" value="' . $c['name'] . '" id="sc-' . $i . '" /><label for="sc-' . $i . '"> <i style="background:' . $c['color'] . '"></i><span>' . $c['name'] . '</span></label></span>';
+                    foreach ($colors as $i => $c):
+                        echo '<span class="radio-colors" data-i="' . $i . '"><input type="radio" name="secondary_color" value="' . $c['name'] . '" id="sc-' . $i . '" /><label for="sc-' . $i . '"> <i style="background:' . $c['value'] . '"></i><span>' . $c['name'] . '</span></label></span>';
                     endforeach;
                     ?>
                 </div>
@@ -157,8 +162,8 @@
                 <label for="" class="form-label">Age</label>
                 <select name="age" class="form-control" required>
                     <?php
-                    foreach ($age as $c) :
-                        echo '<option value="' . $c . '">' . $c . '</option>';
+                    foreach ($age as $c):
+                        echo '<option value="' . $c['value'] . '">' . $c['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -168,8 +173,8 @@
                 <label for="" class="form-label">Construction</label>
                 <select name="construction" class="form-control" required>
                     <?php
-                    foreach ($construction as $c) :
-                        echo '<option value="' . $c . '">' . $c . '</option>';
+                    foreach ($construction as $c):
+                        echo '<option value="' . $c['value'] . '">' . $c['value'] . '</option>';
                     endforeach;
                     ?>
                 </select>
@@ -187,7 +192,9 @@
                 <label for="" class="form-label">Image</label>
                 <input type="file" class="form-control mb-3 <?= (!empty($data['image_err'])) ? 'is-invalid' : ''; ?>" name="image" id="image" onchange="loadFile(event)">
                 <div class="image-preview"><img id="image-preview" /></div>
-                <span class="invalid-feedback"><?= $data['image_err']; ?></span>
+                <span class="invalid-feedback">
+                    <?= $data['image_err']; ?>
+                </span>
             </div>
 
             <div class="form-group mb-3">

@@ -9,6 +9,7 @@ class Settings extends Controller
 {
     private $settingModel;
     private $userModel;
+    private $variableModel;
 
     public function __construct()
     {
@@ -20,6 +21,7 @@ class Settings extends Controller
 
         $this->settingModel = $this->model('Setting');
         $this->userModel = $this->model('User');
+        $this->variableModel = $this->model('Variable');
     }
 
     public function index()
@@ -272,10 +274,131 @@ class Settings extends Controller
 
     public function variables()
     {
+        $variables = $this->variableModel->getAllVariables();
+        $vars = array();
+
+        if (!empty($variables)) {
+            foreach ($variables as $key => $value) {
+                $newarr = array('id' => $value->id, 'name' => $value->name, 'value' => $value->value);
+
+                if (array_key_exists($value->type, $vars)) {
+                    array_push($vars[$value->type], $newarr);
+                } else {
+                    $vars[$value->type] = array($newarr);
+                }
+            }
+        }
+
         $data = [
-            'nav' => 'variables'
+            'nav' => 'variables',
+            'variables' => $vars
         ];
 
         $this->view('admin/settings/variables', $data);
+    }
+
+    public function varupdate($id)
+    {
+        $var = $this->variableModel->getVariable($id);
+        $data = [
+            'var' => $var
+        ];
+
+        $this->view('admin/settings/variable-update', $data);
+    }
+
+    public function varadd()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $value = trim($_POST['value']);
+            $type = trim($_POST['type']);
+            $name = trim($_POST['name']);
+
+            $data = [
+                'action' => 'add',
+                'type' => $type,
+                'name' => $value,
+                'value' => $value
+            ];
+
+            if ($type == 'color') {
+                $data['name'] = $name;
+            }
+
+            if (!$this->variableModel->checkVariable($data)) {
+
+                $newvar = $this->variableModel->add($data);
+
+                if ($newvar) {
+                    $data['status'] = 'success';
+                    $data['id'] = $newvar;
+
+                    header('Content-type: application/json');
+                    echo json_encode($data);
+                } else {
+                    http_response_code(500);
+                }
+            } else {
+                $data = [
+                    'status' => 'exists',
+                    'type' => $type
+                ];
+
+                http_response_code(500);
+                echo json_encode($data);
+            }
+        }
+    }
+
+    public function varedit()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $type = trim($_POST['type']);
+            $name = trim($_POST['name']);
+
+            $data = [
+                'id' => trim($_POST['id']),
+                'type' => trim($_POST['type']),
+                'name' => trim($_POST['value']),
+                'value' => trim($_POST['value'])
+            ];
+
+            if ($type == 'color') {
+                $data['name'] = $name;
+            }
+
+            if ($this->variableModel->update($data)) {
+                $data['status'] = 'success';
+                header('Content-type: application/json');
+                echo json_encode($data);
+            } else {
+                http_response_code(500);
+            }
+        }
+    }
+
+    public function vardelete()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = trim($_POST['id']);
+            $type = trim($_POST['type']);
+
+            $data = [
+                'action' => 'delete',
+                'type' => $type,
+                'id' => $id
+            ];
+
+            if ($this->variableModel->delete($id)) {
+                $data['status'] = 'success';
+
+                header('Content-type: application/json');
+                echo json_encode($data);
+            } else {
+                http_response_code(500);
+            }
+        }
     }
 }

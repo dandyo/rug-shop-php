@@ -70,7 +70,7 @@
         $pageLink = '?search=' . $data['search'] . '&page=';
     }
     ?>
-    <nav aria-label="Page navigation example">
+    <nav>
         <ul class="pagination">
             <li class="page-item"><a class="page-link" href="<?= $pageLink ?>1">First</a></li>
             <li class="page-item <?= ($data['page'] <= 1) ? 'disabled' : '' ?>">

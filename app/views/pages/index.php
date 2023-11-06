@@ -27,7 +27,7 @@
                 }
                 ?>
 
-                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 gy-3">
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 gy-3 mb-5">
                     <?php foreach ($data['rugs'] as $rug) : ?>
                         <?php
                         $checked = (isInCart($rug->id)) ? 'checked' : '';
@@ -49,6 +49,40 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
+                </div>
+
+                <?php
+                print_r($data['total_pages']);
+                ?>
+
+                <?php
+                $next = 0;
+                if (isset($data['page'])) {
+                    $next = (int)$data['page'] + 1;
+                }
+                $prev = 0;
+                if (isset($data['page'])) {
+                    $prev = (int)$data['page'] - 1;
+                }
+                $pageLink = '?page=';
+
+                if (!empty($data['search'])) {
+                    $pageLink = '?search=' . $data['search'] . '&page=';
+                }
+                ?>
+                <div class="pagination-wrap text-center">
+                    <nav class="mx-auto">
+                        <ul class=" pagination">
+                            <!-- <li class="page-item"><a class="page-link" href="<?= $pageLink ?>1">First</a></li> -->
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Prev</a>
+                            </li>
+                            <li class="page-item ">
+                                <a class="page-link" href="?page=2">Next</a>
+                            </li>
+                            <!-- <li class="page-item"><a class="page-link" href="?page=2">Last</a></li> -->
+                        </ul>
+                    </nav>
                 </div>
                 <div id="preloader"></div>
             </div>

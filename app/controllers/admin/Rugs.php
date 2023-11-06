@@ -8,6 +8,7 @@
 class Rugs extends Controller
 {
     private $rugModel;
+    private $variableModel;
 
     public function __construct()
     {
@@ -15,6 +16,7 @@ class Rugs extends Controller
             redirect('users/login');
         }
         $this->rugModel = $this->model('Rug');
+        $this->variableModel = $this->model('Variable');
     }
     public function index()
     {
@@ -85,6 +87,8 @@ class Rugs extends Controller
 
     public function add()
     {
+        $vars = $this->variableModel->getAllVariables();
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
@@ -114,6 +118,7 @@ class Rugs extends Controller
                 'primary_color_err' => '',
                 'secondary_color_err' => '',
                 'image_err' => '',
+                'variables' => $vars
             ];
 
             if (empty($data['asset_number'])) {
@@ -166,7 +171,7 @@ class Rugs extends Controller
 
                             $data['new_image'] = $newppic . "." . $extension;
                         } else {
-                            $data['image_err'] =  "Image file is not valid. Please try uploading another image.";
+                            $data['image_err'] = "Image file is not valid. Please try uploading another image.";
                         }
                     }
                 } catch (Exception $e) {
@@ -190,7 +195,8 @@ class Rugs extends Controller
         } else {
             $data = [
                 'title' => 'Add new rug',
-                'description' => ""
+                'description' => "",
+                'variables' => $vars
             ];
 
             $this->view('admin/rugs/add', $data);
@@ -283,7 +289,7 @@ class Rugs extends Controller
 
                             $data['image'] = $newppic . "." . $extension;
                         } else {
-                            $data['image_err'] =  "Image file is not valid. Please try uploading another image.";
+                            $data['image_err'] = "Image file is not valid. Please try uploading another image.";
                         }
                     }
                 } catch (Exception $e) {
@@ -303,24 +309,30 @@ class Rugs extends Controller
                 redirect('admin/rugs');
             } else {
                 $rug = $this->rugModel->show($id);
+
+                $vars = $this->variableModel->getAllVariables();
+
                 $data = [
                     'rug' => $rug,
                     'image_err' => $error,
                     'asset_number_err' => '',
                     'primary_color_err' => '',
-                    'secondary_color_err' => ''
+                    'secondary_color_err' => '',
+                    'variables' => $vars
                 ];
 
                 $this->view('admin/rugs/edit', $data);
             }
         } else {
             $rug = $this->rugModel->show($id);
+            $vars = $this->variableModel->getAllVariables();
             $data = [
                 'rug' => $rug,
                 'image_err' => '',
                 'asset_number_err' => '',
                 'primary_color_err' => '',
-                'secondary_color_err' => ''
+                'secondary_color_err' => '',
+                'variables' => $vars
             ];
             $this->view('admin/rugs/edit', $data);
         }
