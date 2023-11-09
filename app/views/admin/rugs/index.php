@@ -38,13 +38,24 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($data['rugs'] as $rug) : ?>
+        <?php foreach ($data['rugs'] as $rug): ?>
             <tr>
                 <td><img src="<?= URLROOT . 'uploads/'; ?><?= $rug->image; ?>" alt="" width="100"></td>
-                <td><?= $rug->location; ?></td>
-                <td><?= $rug->asset_number; ?></td>
-                <td><?= $rug->design_name; ?></td>
-                <td><?= $rug->size_width_ft; ?>' <?= $rug->size_width_in; ?>" x <?= $rug->size_height_ft; ?>' <?= $rug->size_height_in; ?>"<br><?= $rug->size_width_m; ?>m x <?= $rug->size_height_m; ?>m</td>
+                <td>
+                    <?= $rug->location; ?>
+                </td>
+                <td>
+                    <?= $rug->asset_number; ?>
+                </td>
+                <td>
+                    <?= $rug->design_name; ?>
+                </td>
+                <td>
+                    <?= $rug->size_width_ft; ?>'
+                    <?= $rug->size_width_in; ?>" x
+                    <?= $rug->size_length_ft; ?>'
+                    <?= $rug->size_length_in; ?>"
+                </td>
                 <td>
                     <a data-src="<?= URLROOT; ?>admin/rugs/show/<?= $rug->id; ?>" data-type="ajax" data-fancybox class="btn btn-primary"><span class="icon-info"></span></a>
                     <a href="<?= URLROOT; ?>admin/rugs/edit/<?= $rug->id; ?>" class="btn btn-success">Edit</a>
@@ -58,11 +69,11 @@
     <?php
     $next = 0;
     if (isset($data['page'])) {
-        $next = (int)$data['page'] + 1;
+        $next = (int) $data['page'] + 1;
     }
     $prev = 0;
     if (isset($data['page'])) {
-        $prev = (int)$data['page'] - 1;
+        $prev = (int) $data['page'] - 1;
     }
     $pageLink = '?page=';
 
@@ -75,17 +86,17 @@
             <li class="page-item"><a class="page-link" href="<?= $pageLink ?>1">First</a></li>
             <li class="page-item <?= ($data['page'] <= 1) ? 'disabled' : '' ?>">
                 <a class="page-link" href="<?php if ($data['page'] <= 1) {
-                                                echo '#';
-                                            } else {
-                                                echo $pageLink . ($data['page'] - 1);
-                                            } ?>">Prev</a>
+                    echo '#';
+                } else {
+                    echo $pageLink . ($data['page'] - 1);
+                } ?>">Prev</a>
             </li>
             <li class="page-item <?= ($data['page'] >= $data['total_pages']) ? 'disabled' : ''; ?>">
                 <a class="page-link" href="<?php if ($data['page'] >= $data['total_pages']) {
-                                                echo '#';
-                                            } else {
-                                                echo $pageLink . ($data['page'] + 1);
-                                            } ?>">Next</a>
+                    echo '#';
+                } else {
+                    echo $pageLink . ($data['page'] + 1);
+                } ?>">Next</a>
             </li>
             <li class="page-item"><a class="page-link" href="<?= $pageLink . $data['total_pages']; ?>">Last</a></li>
         </ul>

@@ -22,10 +22,8 @@
                                 <?= $rug['asset_number']; ?><br>
                                 <?= $rug['size_width_ft']; ?>'
                                 <?= $rug['size_width_in']; ?>" x
-                                <?= $rug['size_height_ft']; ?>'
-                                <?= $rug['size_height_in']; ?>"<br>
-                                <?= $rug['size_width_m']; ?>m x
-                                <?= $rug['size_height_m']; ?>m<br>
+                                <?= $rug['size_length_ft']; ?>'
+                                <?= $rug['size_length_in']; ?>"<br>
                                 <?= $rug['location']; ?><br>
                                 <a href="#" class="cart-item-remove" data-id="<?= $rug['id'] ?>"><span class="icon-highlight_remove"></span> Remove</a>
                             </div>

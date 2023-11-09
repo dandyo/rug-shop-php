@@ -14,52 +14,60 @@
             <tbody>
                 <tr>
                     <td>Size in feet:</td>
-                    <td><?= $data['rug']->size_width_ft; ?>'<?= $data['rug']->size_width_in; ?>" x <?= $data['rug']->size_height_ft; ?>'<?= $data['rug']->size_height_in; ?>"</td>
-                </tr>
-                <tr>
-                    <td>Size in meter:</td>
-                    <td><?= $data['rug']->size_width_m; ?>m x <?= $data['rug']->size_height_m; ?> </td>
+                    <td>
+                        <?= $data['rug']->size_width_ft; ?>'
+                        <?= $data['rug']->size_width_in; ?>" x
+                        <?= $data['rug']->size_length_ft; ?>'
+                        <?= $data['rug']->size_length_in; ?>"
+                    </td>
                 </tr>
                 <tr>
                     <td>Construction:</td>
-                    <td><?= $data['rug']->construction; ?> </td>
+                    <td>
+                        <?= $data['rug']->construction; ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Material:</td>
-                    <td><?= $data['rug']->material; ?> </td>
+                    <td>
+                        <?= $data['rug']->material; ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Design #:</td>
-                    <td><?= $data['rug']->design_name; ?> </td>
+                    <td>
+                        <?= $data['rug']->design_name; ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Primary Colors:</td>
-                    <td><?= $data['rug']->primary_color; ?> </td>
+                    <td>
+                        <?= $data['rug']->primary_color; ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Secondary Colors:</td>
-                    <td><?= $data['rug']->secondary_color; ?> </td>
+                    <td>
+                        <?= $data['rug']->secondary_color; ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Collection</td>
-                    <td><?= $data['rug']->collection; ?> </td>
-                </tr>
-                <tr>
-                    <td>Status:</td>
-                    <td><?= $data['rug']->status; ?> </td>
+                    <td>
+                        <?= $data['rug']->collection; ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Location:</td>
-                    <td><?= $data['rug']->location; ?> </td>
+                    <td>
+                        <?= $data['rug']->location; ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Age:</td>
-                    <td><?= $data['rug']->age; ?> </td>
-                </tr>
-                <tr>
-                    <td>Origin:</td>
-                    <td><?= getCountryName($data['rug']->country);
-                        ?> </td>
+                    <td>
+                        <?= $data['rug']->age; ?>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">

@@ -68,34 +68,6 @@
         </div>
 
         <div class="mb-4">
-            <form action="" method="post" class="formVariable" data-type="style">
-                <input type="hidden" name="type" value="style">
-                <div class="form-group mb-3">
-                    <label class="form-label">Style</label> <span class="d-inline-block ms-2 alert--style text-danger"></span>
-                    <div class="row">
-                        <div class="col pe-0">
-                            <input type="text" name="value" class="form-control" placeholder="Add style" required />
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary"><span class="icon icon-plus"></span></button>
-                        </div>
-                    </div>
-
-                </div>
-            </form>
-
-            <div class="var-list var-list--style">
-                <?php
-                if (!empty($data['variables']['style'])) {
-                    foreach ($data['variables']['style'] as $key => $var) {
-                        echo '<span data-id="var-' . $var['id'] . '" data-src="/shop/admin/settings/varupdate/' . $var['id'] . '" class="var-item" data-type="ajax" data-filter="#main" data-fancybox>' . $var['value'] . '</span>';
-                    }
-                }
-                ?>
-            </div>
-        </div>
-
-        <div class="mb-4">
             <form action="" method="post" class="formVariable" data-type="construction">
                 <input type="hidden" name="type" value="construction">
                 <div class="form-group mb-3">

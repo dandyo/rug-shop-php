@@ -1,4 +1,3 @@
-<?php $headerStyles = '<link rel="stylesheet" href="' . URLROOT . 'vendor/country/niceCountryInput.css" />'; ?>
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="page-banner">
     <div class="container-xl">
@@ -8,10 +7,10 @@
 <div class="py-4 py-md-5 bg-lgrey2">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-4 col-lg-3 col-xl-2">
+            <div class="col-md-4 col-lg-3 col-xl-3 col-xxl-2">
                 <?php require APPROOT . '/views/inc/sidebar.php'; ?>
             </div>
-            <div class="col-md-8 col-lg-6 col-xl-7">
+            <div class="col-md-8 col-lg-6 col-xl-6 col-xxl-7">
                 <?php
                 if (isset($_GET) && !empty($_GET)) {
                     $params = $_GET;
@@ -29,7 +28,7 @@
 
                 <?php require APPROOT . '/views/inc/cart-toggle.php'; ?>
 
-                <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-3 row-cols-xl-4 gy-3 mb-5">
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 gy-3 mb-5">
                     <?php foreach ($data['rugs'] as $rug): ?>
                         <?php
                         $checked = (isInCart($rug->id)) ? 'checked' : '';
@@ -45,10 +44,8 @@
                                     <?= $rug->asset_number; ?><br>
                                     <?= $rug->size_width_ft; ?>'
                                     <?= $rug->size_width_in; ?>" x
-                                    <?= $rug->size_height_ft; ?>'
-                                    <?= $rug->size_height_in; ?>"<br>
-                                    <?= $rug->size_width_m; ?>m x
-                                    <?= $rug->size_height_m; ?>m<br>
+                                    <?= $rug->size_length_ft; ?>'
+                                    <?= $rug->size_length_in; ?>"<br>
                                     <?= $rug->location; ?><br>
                                     <input type="checkbox" data-id="<?= $rug->id; ?>" class="add-checkbox" <?= $checked ?> />
                                 </div>

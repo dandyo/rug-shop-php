@@ -20,18 +20,6 @@ $countries = json_decode($json, TRUE);
             <div class="accordion accordion-search-filter mb-3">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                            SKU #
-                        </button>
-                    </h2>
-                    <div id="collapse1" class="accordion-collapse collapse <?= (isset($_GET['sku']) && $_GET['sku'] != '') ? 'show' : ''; ?>">
-                        <div class="accordion-body">
-                            <input type="text" class="form-control" name="sku" placeholder="SKU Number" value="<?= (isset($_GET['sku'])) ? $_GET['sku'] : ''; ?>" />
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                             Shape & Size
                         </button>
@@ -103,7 +91,7 @@ $countries = json_decode($json, TRUE);
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header text-center">
-                                        Height
+                                        Length
                                     </div>
                                     <div class="card-body p-2">
                                         <div class="row align-items-center gx-2">
@@ -113,13 +101,13 @@ $countries = json_decode($json, TRUE);
                                                     <div class="pe-1">
                                                         <span class="d-block mb-1 text-center">ft.</span>
                                                         <div class="quantity">
-                                                            <input type="number" class="form-control" name="size_height_ft_min" min="0" value="<?= (isset($_GET['size_height_ft_min']) && !empty($_GET['size_height_ft_min'])) ? $_GET['size_height_ft_min'] : '' ?>" />
+                                                            <input type="number" class="form-control" name="size_length_ft_min" min="0" value="<?= (isset($_GET['size_length_ft_min']) && !empty($_GET['size_length_ft_min'])) ? $_GET['size_length_ft_min'] : '' ?>" />
                                                         </div>
                                                     </div>
                                                     <div class="ps-1">
                                                         <span class="d-block mb-1 text-center">in.</span>
                                                         <div class="quantity">
-                                                            <input type="number" class="form-control" name="size_height_in_min" min="0" max="11" value="<?= (isset($_GET['size_height_in_min']) && !empty($_GET['size_height_in_min'])) ? $_GET['size_height_in_min'] : '' ?>" />
+                                                            <input type="number" class="form-control" name="size_length_in_min" min="0" max="11" value="<?= (isset($_GET['size_length_in_min']) && !empty($_GET['size_length_in_min'])) ? $_GET['size_length_in_min'] : '' ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -130,13 +118,13 @@ $countries = json_decode($json, TRUE);
                                                     <div class="pe-1">
                                                         <span class="d-block mb-1 text-center">ft.</span>
                                                         <div class="quantity">
-                                                            <input type="number" class="form-control" name="size_height_ft_max" min="0" value="<?= (isset($_GET['size_height_ft_max']) && !empty($_GET['size_height_ft_max'])) ? $_GET['size_height_ft_max'] : '' ?>" />
+                                                            <input type="number" class="form-control" name="size_length_ft_max" min="0" value="<?= (isset($_GET['size_length_ft_max']) && !empty($_GET['size_length_ft_max'])) ? $_GET['size_length_ft_max'] : '' ?>" />
                                                         </div>
                                                     </div>
                                                     <div class="ps-1">
                                                         <span class="d-block mb-1 text-center">in.</span>
                                                         <div class="quantity">
-                                                            <input type="number" class="form-control" name="size_height_in_max" min="0" max="11" value="<?= (isset($_GET['size_height_in_max']) && !empty($_GET['size_height_in_max'])) ? $_GET['size_height_in_max'] : '' ?>" />
+                                                            <input type="number" class="form-control" name="size_length_in_max" min="0" max="11" value="<?= (isset($_GET['size_length_in_max']) && !empty($_GET['size_length_in_max'])) ? $_GET['size_length_in_max'] : '' ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -157,33 +145,6 @@ $countries = json_decode($json, TRUE);
                     <div id="collapse3" class="accordion-collapse collapse">
                         <div class="accordion-body">
                             <input type="text" class="form-control" name="design_number" placeholder="Design Number" value="" />
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                            Style
-                        </button>
-                    </h2>
-                    <?php
-                    $select_style = [];
-                    if (isset($_GET['style']) && !empty($_GET['style'])) {
-                        $select_style = $_GET['style'];
-                    } ?>
-                    <div id="collapse4" class="accordion-collapse collapse <?= (!empty($select_style)) ? 'show' : ''; ?>">
-                        <div class="accordion-body">
-                            <div class="scroll-max">
-                                <?php
-                                foreach ($style as $k => $c):
-                                    $checked = (in_array($c['value'], $select_style)) ? 'checked' : '';
-                                    echo '<div class="form-check">
-                            <input name="style[]" class="form-check-input" type="checkbox" value="' . $c['value'] . '" id="style-' . $k . '" ' . $checked . '> 
-                            <label class="form-check-label" for="style-' . $k . '">' . $c['value'] . '</label>
-                            </div>';
-                                endforeach;
-                                ?>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -321,34 +282,6 @@ $countries = json_decode($json, TRUE);
                             </div>';
                             endforeach;
                             ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
-                            Country
-                        </button>
-                    </h2>
-                    <?php
-                    $select_country = [];
-                    if (isset($_GET['country']) && $_GET['country'] != '') {
-                        $select_country = $_GET['country'];
-                    } ?>
-                    <div id="collapse10" class="accordion-collapse collapse <?= (!empty($select_country)) ? 'show' : ''; ?>">
-                        <div class="accordion-body">
-                            <div class="country-selector">
-                                <?php
-                                foreach ($countries as $k => $c):
-                                    $checked = (in_array($c['code'], $select_country)) ? 'checked' : '';
-                                    echo '<div class="form-check">
-                            <input name="country[]" class="form-check-input" type="checkbox" value="' . $c['code'] . '" id="country-' . $k . '" ' . $checked . '> 
-                            <label class="form-check-label" for="country-' . $k . '">' . $c['name'] . '</label>
-                            </div>';
-                                endforeach;
-                                ?>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -44,8 +44,7 @@ function cartProcess(id, queryString, action) {
                     var newitem = '<div class="rug-item" data-id="' + rug.id + '">'
                         + '<div class="rug-item-image"><a href="/rugs/' + rug.id + '">'
                         + '<img src="' + URLROOT + 'uploads/' + rug.image + '" alt="' + rug.asset_number + '" class="w-100"></a></div>'
-                        + '<div class="rug-item-desc">' + rug.asset_number + '<br>' + rug.size_width_ft + '\' ' + rug.size_width_in + '" x ' + rug.size_height_ft + '\' ' + rug.size_height_in + '"<br>'
-                        + rug.size_width_m + 'm x ' + rug.size_height_m + 'm<br>' + rug.location + '<br>'
+                        + '<div class="rug-item-desc">' + rug.asset_number + '<br>' + rug.size_width_ft + '\' ' + rug.size_width_in + '" x ' + rug.size_length_ft + '\' ' + rug.size_length_in + '"<br>' + rug.location + '<br>'
                         + '<a href="#" class="cart-item-remove" data-id="' + rug.id + '"><span class="icon-highlight_remove"></span> Remove</a>'
                         + '</div></div>';
                     $('.cart-items').append(newitem);

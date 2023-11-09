@@ -28,7 +28,7 @@ class Cart extends Controller
 
                 $rug = $this->rugModel->show($id);
 
-                $rugArr = array('id' => $rug->id, 'asset_number' => $rug->asset_number, 'design_name' => $rug->design_name, 'size_width_ft' => $rug->size_width_ft, 'size_height_ft' => $rug->size_height_ft, 'size_width_in' => $rug->size_width_in, 'size_height_in' => $rug->size_height_in, 'size_width_m' => $rug->size_width_m, 'size_height_m' => $rug->size_height_m, 'location' => $rug->location, 'image' => $rug->image);
+                $rugArr = array('id' => $rug->id, 'asset_number' => $rug->asset_number, 'design_name' => $rug->design_name, 'size_width_ft' => $rug->size_width_ft, 'size_length_ft' => $rug->size_length_ft, 'size_width_in' => $rug->size_width_in, 'size_length_in' => $rug->size_length_in, 'location' => $rug->location, 'image' => $rug->image);
 
                 $itemArray = array($rug->id => $rugArr);
 
@@ -118,7 +118,7 @@ class Cart extends Controller
                     $cartString .= '<tr>';
                     $cartString .= '<td><img src="' . URLROOT . 'uploads/' . $rug->image . '" width="120" height="150" /> </td>';
                     $cartString .= '<td>' . $rug->asset_number . '</td>';
-                    $cartString .= '<td>' . $rug->size_width_ft . '\' ' . $rug->size_width_in . '" x ' . $rug->size_height_ft . '\' ' . $rug->size_height_in . '" <br> ' . $rug->size_width_m . 'm  x ' . $rug->size_height_m . 'm</td>';
+                    $cartString .= '<td>' . $rug->size_width_ft . '\' ' . $rug->size_width_in . '" x ' . $rug->size_length_ft . '\' ' . $rug->size_length_in . '"</td>';
                     $cartString .= '<td>' . $rug->location . '</td>';
                     $cartString .= '<td><a href="' . URLROOT . 'rugs/' . $rug->id . '" target="_blank">view</a></td>';
                     $cartString .= '</tr>';
@@ -180,7 +180,7 @@ class Cart extends Controller
             Address: ' . $data['address1'] . ', ' . $data['address2'] . ', ' . $data['city'] . ', ' . $data['state'] . ' ' . $data['zip'] . '<br>
             Cart:</p>' . $cartString;
 
-            $headers  = 'MIME-Version: 1.0' . "\r\n";
+            $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
             $headers .= 'From: ' . $from . "\r\n" .
                 'Reply-To: ' . $from . "\r\n" .
@@ -225,110 +225,6 @@ class Cart extends Controller
         print_r($settings);
         echo '<br>';
         print_r($to);
-
-        // $from = 'Organic Looms<noreply@organiclooms.com>';
-
-        // $email_subject = "New Order from Organic Looms website";
-        // $email_body = '<html>
-        // <head>
-        // <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        //     <title></title>
-        //     <style>
-        //     table {
-        //         border-collapse: collapse;
-        //     }
-        //     table tr th {
-        //         border: 1px solid #000;
-        //         vertical-align: top;
-        //         padding: 5px;
-        //     }
-        //     table tr td {
-        //         border: 1px solid #000;
-        //         vertical-align: top;
-        //         padding: 5px;
-        //     }
-        //     </style>
-        // </head>
-        // <body>';
-
-        // $email_body .= "<h4>You have received a new order from Organic Looms.</h4>";
-
-        // $cart = '{"1":{"id":1,"asset_number":"Rug #89739","design_name":"N\/A","size_width_ft":1,"size_height_ft":2,"size_width_in":6,"size_height_in":10,"size_width_m":2,"size_height_m":2,"location":"Prescott","image":"img1399114133_1698126304.jpg"}}';
-
-        // $cartString = '';
-
-        // $cartArr = json_decode($cart);
-
-        // if (!empty($cartArr)) {
-        //     // print_r($cartArr);
-        //     $cartString .= '<table><thead>';
-        //     $cartString .= '<tr>';
-        //     $cartString .= '<th></th>';
-        //     $cartString .= '<th>Asset Number</th>';
-        //     $cartString .= '<th>Size</th>';
-        //     $cartString .= '<th>Location</th>';
-        //     $cartString .= '</tr>';
-        //     $cartString .= '</thead><tbody>';
-        //     foreach ($cartArr as $k => $rug) {
-        //         $cartString .= '<tr>';
-        //         $cartString .= '<td><img src="' . URLROOT . 'uploads/' . $rug->image . '" width="120" height="150" /> </td>';
-        //         $cartString .= '<td>' . $rug->asset_number . '</td>';
-        //         $cartString .= '<td>' . $rug->size_width_ft . '\' ' . $rug->size_width_in . '" x ' . $rug->size_height_ft . '\' ' . $rug->size_height_in . '" <br> ' . $rug->size_width_m . 'm  x ' . $rug->size_height_m . 'm</td>';
-        //         $cartString .= '<td>' . $rug->location . '</td>';
-        //         $cartString .= '</tr>';
-        //     }
-        //     $cartString .= '</tbody></table>';
-        // }
-
-        // $email_body .= '<h4>Here are the details:</h4><br> ' . $cartString;
-        // $email_body .= '</body></html>';
-
-
-        // // $headers = 'From: Organic Looms <noreply@organiclooms.com>' . "\r\n";
-        // // $headers .= 'Reply-To: dandyojeda@gmail.com' . "\r\n";
-
-        // // $success = mail($to, $email_subject, $email_body, $headers);
-        // // if ($success) {
-        // //     echo "success";
-        // // } else {
-        // //     echo "failed";
-        // // }
-
-        // $headers  = 'MIME-Version: 1.0' . "\r\n";
-        // $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        // $headers .= 'From: ' . $from . "\r\n" .
-        //     'Reply-To: ' . $from . "\r\n" .
-        //     'X-Mailer: PHP/' . phpversion();
-
-        // try {
-        //     $success = mail($to, $email_subject, $email_body, $headers);
-        //     if ($success) {
-        //         $data = [
-        //             'status' => 'success',
-        //             'cart' => $cartString
-        //         ];
-
-        //         header('Content-type: application/json');
-        //         // http_response_code(200);
-        //         echo json_encode($data);
-        //         // return true;
-        //     } else {
-        //         $data = [
-        //             'status' => 'error',
-        //             'cart' => $cartString
-        //         ];
-        //         header('Content-type: application/json');
-        //         echo json_encode($data);
-        //         // http_response_code(500);
-        //     }
-        // } catch (Exception $e) {
-        //     header('Content-type: application/json');
-        //     // http_response_code(500);
-        //     $data = [
-        //         'status' => $e
-        //     ];
-        //     echo json_encode($data);
-        // }
     }
 
     public function thankyou()

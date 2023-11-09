@@ -15,23 +15,41 @@
             <tbody>
                 <tr>
                     <th>Name</th>
-                    <td><?= $data['order']->name; ?></td>
+                    <td>
+                        <?= $data['order']->name; ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td><?= $data['order']->email; ?></td>
+                    <td>
+                        <a href="mailto:<?= $data['order']->email; ?>">
+                            <?= $data['order']->email; ?>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Phone</th>
-                    <td><?= $data['order']->phone; ?></td>
+                    <td>
+                        <a href="tel:<?= $data['order']->phone; ?>">
+                            <?= $data['order']->phone; ?>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Address</th>
-                    <td><?= $data['order']->address1; ?>, <?= $data['order']->address2; ?>, <?= $data['order']->city; ?>, <?= $data['order']->state; ?> <?= $data['order']->zip; ?></td>
+                    <td>
+                        <?= $data['order']->address1; ?>,
+                        <?= $data['order']->address2; ?>,
+                        <?= $data['order']->city; ?>,
+                        <?= $data['order']->state; ?>
+                        <?= $data['order']->zip; ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>Date</th>
-                    <td><?= date("M j, Y h:i:s A", strtotime($data['order']->created_at)); ?></td>
+                    <td>
+                        <?= date("M j, Y h:i:s A", strtotime($data['order']->created_at)); ?>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -48,13 +66,24 @@
             </thead>
             <tbody>
                 <?php if (!empty($data['cart'])) { ?>
-                    <?php foreach ($data['cart'] as $rug) : ?>
+                    <?php foreach ($data['cart'] as $rug): ?>
                         <tr>
                             <td><img src="<?= URLROOT . 'uploads/'; ?><?= $rug->image; ?>" alt="" width="100"></td>
-                            <td><?= $rug->location; ?></td>
-                            <td><?= $rug->asset_number; ?></td>
-                            <td><?= $rug->design_name; ?></td>
-                            <td><?= $rug->size_width_ft; ?>' <?= $rug->size_width_in; ?>" x <?= $rug->size_height_ft; ?>' <?= $rug->size_height_in; ?>"<br><?= $rug->size_width_m; ?>m x <?= $rug->size_height_m; ?>m</td>
+                            <td>
+                                <?= $rug->location; ?>
+                            </td>
+                            <td>
+                                <?= $rug->asset_number; ?>
+                            </td>
+                            <td>
+                                <?= $rug->design_name; ?>
+                            </td>
+                            <td>
+                                <?= $rug->size_width_ft; ?>'
+                                <?= $rug->size_width_in; ?>" x
+                                <?= $rug->size_height_ft; ?>'
+                                <?= $rug->size_height_in; ?>"
+                            </td>
                             <td><a href="<?= URLROOT . 'rugs/' . $rug->id; ?>" target="_blank" class="btn btn-primary"><span class="icon-info"></span></a></td>
                         </tr>
                     <?php endforeach; ?>

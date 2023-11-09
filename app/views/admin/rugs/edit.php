@@ -1,5 +1,4 @@
 <?php require APPROOT . '/views/inc/rug-options.php'; ?>
-<?php $headerStyles = '<link rel="stylesheet" href="' . URLROOT . 'vendor/country/niceCountryInput.css" />'; ?>
 <?php require APPROOT . '/views/incadmin/header.php'; ?>
 <div class="row justify-content-center">
     <div class="col-md-6 col-lg-7">
@@ -37,18 +36,6 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="" class="form-label">Style</label>
-                <select name="style" class="form-control" required>
-                    <?php
-                    foreach ($style as $i):
-                        $selected = ($data['rug']->style == $i['value']) ? ' selected' : '';
-                        echo '<option value="' . $i['value'] . '"' . $selected . '>' . $i['value'] . '</option>';
-                    endforeach;
-                    ?>
-                </select>
-            </div>
-
-            <div class="form-group mb-3">
                 <label for="" class="form-label">Shape</label>
                 <select name="shape" class="form-control">
                     <?php
@@ -78,38 +65,19 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="" class="form-label">Height</label>
+                        <label for="" class="form-label">Length</label>
                         <div class="row align-items-center">
                             <div class="col-auto">Feet</div>
                             <div class="col ps-0">
-                                <input type="number" class="form-control" name="size_height_ft" value="<?= $data['rug']->size_height_ft; ?>" required />
+                                <input type="number" class="form-control" name="size_length_ft" value="<?= $data['rug']->size_length_ft; ?>" required />
                             </div>
                             <div class="col-auto">Inches</div>
                             <div class="col ps-0">
-                                <input type="number" class="form-control" min="0" max="11" name="size_height_in" value="<?= $data['rug']->size_height_in; ?>" required />
+                                <input type="number" class="form-control" min="0" max="11" name="size_length_in" value="<?= $data['rug']->size_length_in; ?>" required />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <span>&nbsp;</span><br>
-                        <span>Meter</span>
-                    </div>
-                    <div class="col">
-                        <label for="" class="form-label">Width</label>
-                        <input type="number" step=".01" class="form-control" name="size_width_m" value="<?= $data['rug']->size_width_m; ?>" required />
-                    </div>
-                    <div class="col">
-                        <label for="" class="form-label">Height</label>
-                        <input type="number" step=".01" class="form-control" name="size_height_m" value="<?= $data['rug']->size_height_m; ?>" required />
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group mb-3">
-                <label for="" class="form-label">SKU</label>
-                <input type="text" class="form-control" name="sku" value="<?= $data['rug']->sku; ?>">
             </div>
 
             <div class="form-group mb-3">
@@ -188,14 +156,6 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="" class="form-label">Country</label>
-                <input type="hidden" id="country_selected" value="<?= $data['rug']->country; ?>" name="country" required />
-                <div class="country_selector" data-selectedcountry="<?= $data['rug']->country; ?>" data-showspecial="false" data-showflags="true" data-i18nall="All selected" data-i18nnofilter="No selection" data-i18nfilter="Filter" data-onchangecallback="onChangeCallback">
-                </div>
-
-            </div>
-
-            <div class="form-group mb-3">
                 <?php
                 $src = ($data['rug']->image) ? URLROOT . 'uploads/' . $data['rug']->image : '';
                 ?>
@@ -231,17 +191,7 @@
 </div>
 <?php
 $footerScripts = '<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-<script src="' . URLROOT . 'vendor/country/niceCountryInput.js"></script>
 <script>
-    function onChangeCallback(ctr){
-        console.log("The country was changed: " + ctr);
-        $("#country_selected").val(ctr);
-    }
-    $(document).ready(function () {
-        $(".country_selector").each(function(i,e){
-            new NiceCountryInput(e).init();
-        });
-    });
     var loadFile = function(event) {
         var output = document.getElementById("image-preview");
         output.src = URL.createObjectURL(event.target.files[0]);

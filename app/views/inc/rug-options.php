@@ -19,7 +19,5 @@ if (!empty($data['variables'])) {
     $age = (isset($variables['age']) && !empty($variables['age'])) ? $variables['age'] : array();
     $shape = (isset($variables['shape']) && !empty($variables['shape'])) ? $variables['shape'] : array();
     $colors = (isset($variables['color']) && !empty($variables['color'])) ? $variables['color'] : array();
-    $style = (isset($variables['style']) && !empty($variables['style'])) ? $variables['style'] : array();
-
-    // print_r($variables);
+    // $style = (isset($variables['style']) && !empty($variables['style'])) ? $variables['style'] : array();
 }

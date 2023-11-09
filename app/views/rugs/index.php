@@ -26,15 +26,8 @@
                                         <td>
                                             <?= $data['rug']->size_width_ft; ?>'
                                             <?= $data['rug']->size_width_in; ?>" x
-                                            <?= $data['rug']->size_height_ft; ?>'
-                                            <?= $data['rug']->size_height_in; ?>"
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Size in meter:</td>
-                                        <td>
-                                            <?= $data['rug']->size_width_m; ?>m x
-                                            <?= $data['rug']->size_height_m; ?>m
+                                            <?= $data['rug']->size_length_ft; ?>'
+                                            <?= $data['rug']->size_length_in; ?>"
                                         </td>
                                     </tr>
                                     <tr>
@@ -94,10 +87,6 @@
                                     <?= $data['rug']->collection; ?>
                                 </td>
                             </tr>
-                            <!-- <tr>
-                            <td>Status:</td>
-                            <td><?php //= $data['rug']->status; ?> </td>
-                        </tr> -->
                             <tr>
                                 <td>Location:</td>
                                 <td>
@@ -108,12 +97,6 @@
                                 <td>Age:</td>
                                 <td>
                                     <?= $data['rug']->age; ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Origin:</td>
-                                <td>
-                                    <?= getCountryName($data['rug']->country); ?>
                                 </td>
                             </tr>
                             <tr>
