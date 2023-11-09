@@ -1,5 +1,4 @@
 <?php
-
 function isInCart($id)
 {
     $checked = false;

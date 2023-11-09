@@ -8,10 +8,12 @@
 class Pages extends Controller
 {
     private $rugModel;
+    private $variableModel;
 
     public function __construct()
     {
         $this->rugModel = $this->model('Rug');
+        $this->variableModel = $this->model('Variable');
     }
     public function about()
     {
@@ -23,13 +25,18 @@ class Pages extends Controller
     }
     public function Index()
     {
+        $vars = $this->variableModel->getAllVariables();
+
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $params = $_GET;
+
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
             } else {
                 $page = 1;
             }
+
+            unset($params['page']);
 
             $no_of_records_per_page = 16;
 
@@ -37,16 +44,18 @@ class Pages extends Controller
 
             $rugs = $this->rugModel->refineSearch($params);
             $total_rows = count($rugs);
-            $offset = ($page - 1) * $no_of_records_per_page;
-            $total_pages = ceil($total_rows / $no_of_records_per_page);  
 
-            $rugs2 = $this->rugModel->refineSearch($params, $offset, $no_of_records_per_page);        
+            $offset = ($page - 1) * $no_of_records_per_page;
+            $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+            $rugs2 = $this->rugModel->refineSearch($params, $offset, $no_of_records_per_page);
 
             $data = [
-                'rugs' => $rugs,
+                'rugs' => $rugs2,
                 'params' => $params,
                 'page' => $page,
-                'total_pages' => $total_pages
+                'total_pages' => $total_pages,
+                'variables' => $vars
             ];
 
             $this->view('pages/index', $data);

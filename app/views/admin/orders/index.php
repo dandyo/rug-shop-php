@@ -36,19 +36,31 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($data['orders'] as $order) :
+        <?php foreach ($data['orders'] as $order):
             $cart = 0;
             if (!empty($order->cart)) {
                 $cart = unserialize($order->cart);
                 $cart = count($cart);
             }
-        ?>
+            ?>
             <tr data-id="<?= $order->id; ?>">
-                <td><?= $order->status; ?></td>
-                <td><?= $order->name; ?></td>
-                <td><?= $order->address1 . ', '; ?> <?= ($order->address2) ? $order->address2 . ", " : ""; ?><?= $order->city . ', ' . $order->state . ' ' . $order->zip; ?></td>
-                <td><?php echo $cart; ?></td>
-                <td><?= date("M j, Y h:i:s A", strtotime($order->created_at)); ?></td>
+                <td>
+                    <?= $order->status; ?>
+                </td>
+                <td>
+                    <?= $order->name; ?>
+                </td>
+                <td>
+                    <?= $order->address1 . ', '; ?>
+                    <?= ($order->address2) ? $order->address2 . ", " : ""; ?>
+                    <?= $order->city . ', ' . $order->state . ' ' . $order->zip; ?>
+                </td>
+                <td>
+                    <?php echo $cart; ?>
+                </td>
+                <td>
+                    <?= date("M j, Y h:i:s A", strtotime($order->created_at)); ?>
+                </td>
                 <td>
                     <a data-src="<?= URLROOT; ?>admin/orders/show/<?= $order->id; ?>" data-type="ajax" data-fancybox class="btn btn-primary"><span class="icon-info"></span></a>
                     <a href="<?= URLROOT; ?>admin/orders/edit/<?= $order->id; ?>" class="btn btn-success">Edit</a>
@@ -62,11 +74,11 @@
     <?php
     $next = 0;
     if (isset($data['page'])) {
-        $next = (int)$data['page'] + 1;
+        $next = (int) $data['page'] + 1;
     }
     $prev = 0;
     if (isset($data['page'])) {
-        $prev = (int)$data['page'] - 1;
+        $prev = (int) $data['page'] - 1;
     }
 
     $pageLink = '?page=';
@@ -80,17 +92,17 @@
             <li class="page-item"><a class="page-link" href="<?= $pageLink ?>1">First</a></li>
             <li class="page-item <?= ($data['page'] <= 1) ? 'disabled' : '' ?>">
                 <a class="page-link" href="<?php if ($data['page'] <= 1) {
-                                                echo '#';
-                                            } else {
-                                                echo $pageLink . ($data['page'] - 1);
-                                            } ?>">Prev</a>
+                    echo '#';
+                } else {
+                    echo $pageLink . ($data['page'] - 1);
+                } ?>">Prev</a>
             </li>
             <li class="page-item <?= ($data['page'] >= $data['total_pages']) ? 'disabled' : ''; ?>">
                 <a class="page-link" href="<?php if ($data['page'] >= $data['total_pages']) {
-                                                echo '#';
-                                            } else {
-                                                echo $pageLink . ($data['page'] + 1);
-                                            } ?>">Next</a>
+                    echo '#';
+                } else {
+                    echo $pageLink . ($data['page'] + 1);
+                } ?>">Next</a>
             </li>
             <li class="page-item"><a class="page-link" href="<?= $pageLink . $data['total_pages']; ?>">Last</a></li>
         </ul>

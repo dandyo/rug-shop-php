@@ -35,3 +35,42 @@ $('.quantity').each(function () {
     });
 
 });
+
+var arrayClean = function (thisArray, thisName) {
+    "use strict";
+    $.each(thisArray, function (index, item) {
+        if (item.name == thisName) {
+            delete thisArray[index];
+        }
+    });
+}
+
+$('.search-params .badge').click(function () {
+    var type = $(this).attr('data-param');
+    // var type = 'location[]';
+
+    var forminputs = $('#search-filters').serializeArray();
+    // var forminputs = $('#search-filters').serialize();
+    // var forminputs = $("#search-filters").find("input[name!='" + type + "']").serializeArray();;
+
+    // console.log(forminputs);
+
+    for (var key in forminputs) {
+        // console.log(forminputs[key].name);
+
+        if (forminputs[key].name == type) {
+            forminputs.splice(key, 1);
+        }
+    }
+
+    // arrayClean(forminputs, type);
+    var url = $.param(forminputs);
+
+    console.log(url);
+    window.location.replace('?' + url);
+
+
+    // window.location.replace('http://organiclooms.local/shop/?sku=&shape=&size_width_ft_min=&size_width_in_min=&size_width_ft_max=&size_width_in_max=&size_height_ft_min=&size_height_in_min=&size_height_ft_max=&size_height_in_max=&design_number=&location');
+
+    // $(this).remove();
+});

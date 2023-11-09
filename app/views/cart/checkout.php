@@ -7,7 +7,7 @@
 <div class="py-4 py-md-5">
     <div class="container-xl">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-6 mb-4 mb-md-0">
                 <h2 class="mb-4">Checkout</h2>
                 <form method="post" id="checkoutForm" novalidate>
                     <div class="form-group mb-3">
@@ -53,8 +53,8 @@
                         </div>
                     </div>
                     <textarea name="cart" class="d-none w-100"><?php if (isset($_SESSION["cart_item"]) && !empty($_SESSION["cart_item"])) {
-                                                                    echo json_encode($_SESSION["cart_item"]);
-                                                                } ?>
+                        echo json_encode($_SESSION["cart_item"]);
+                    } ?>
                     </textarea>
                     <br>
                     <div id="success"></div>
@@ -63,14 +63,14 @@
                     <input type="submit" class="btn btn-brown w-100" value="Checkout">
                 </form>
             </div>
-            <div class="col-md-4 col-lg-3">
+            <div class="col-8 col-sm-6 col-md-4 col-lg-3">
                 <h2 class="mb-4">Cart</h2>
 
                 <div id="cart-items" class="cart-items">
                     <?php
                     if (isset($_SESSION["cart_item"]) && !empty($_SESSION["cart_item"])) {
                         $item_total = 0; ?>
-                        <?php foreach ($_SESSION["cart_item"] as $rug) : ?>
+                        <?php foreach ($_SESSION["cart_item"] as $rug): ?>
                             <div class="rug-item" data-id="<?= $rug['id'] ?>">
                                 <div class="rug-item-image">
                                     <a href="<?= URLROOT; ?>rugs/<?= $rug['id']; ?>">
@@ -79,8 +79,12 @@
                                 </div>
                                 <div class="rug-item-desc">
                                     <?= $rug['asset_number']; ?><br>
-                                    <?= $rug['size_width_ft']; ?>' <?= $rug['size_width_in']; ?>" x <?= $rug['size_height_ft']; ?>' <?= $rug['size_height_in']; ?>"<br>
-                                    <?= $rug['size_width_m']; ?>m x <?= $rug['size_height_m']; ?>m<br>
+                                    <?= $rug['size_width_ft']; ?>'
+                                    <?= $rug['size_width_in']; ?>" x
+                                    <?= $rug['size_height_ft']; ?>'
+                                    <?= $rug['size_height_in']; ?>"<br>
+                                    <?= $rug['size_width_m']; ?>m x
+                                    <?= $rug['size_height_m']; ?>m<br>
                                     <?= $rug['location']; ?><br>
                                 </div>
                             </div>
@@ -93,17 +97,17 @@
 </div>
 <script src="https://www.google.com/recaptcha/api.js?render=6LeoZbUoAAAAAOP9GCudF5W0vdGSpF130_xqMbfy"></script>
 <script>
-    grecaptcha.ready(function() {
+    grecaptcha.ready(function () {
         grecaptcha.execute('6LeoZbUoAAAAAOP9GCudF5W0vdGSpF130_xqMbfy', {
             action: 'contact'
-        }).then(function(token) {
+        }).then(function (token) {
             document.getElementById("token").value = token;
         });
         // refresh token every minute to prevent expiration
-        setInterval(function() {
+        setInterval(function () {
             grecaptcha.execute('6LeoZbUoAAAAAOP9GCudF5W0vdGSpF130_xqMbfy', {
                 action: 'contact'
-            }).then(function(token) {
+            }).then(function (token) {
                 // console.log( 'refreshed token:', token );
                 document.getElementById("token").value = token;
             });

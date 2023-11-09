@@ -14,6 +14,23 @@ $("body").on("click", ".add-checkbox", function () {
 
     // console.log(URLROOT);
 
+    cartProcess(id, queryString, action);
+
+    checkCart();
+});
+
+$('#add-to-cart').click(function () {
+    var id = $(this).attr('data-id');
+    var queryString = '';
+    var action = 'add';
+
+    queryString = 'action=add&id=' + id;
+    cartProcess(id, queryString, action);
+    checkCart();
+    $(this).prop('disabled', true);
+});
+
+function cartProcess(id, queryString, action) {
     $.ajax({
         url: "/shop/cart/process",
         data: queryString,
@@ -37,33 +54,47 @@ $("body").on("click", ".add-checkbox", function () {
                     if (data.status == 'success') {
                         $('.cart-items').find('.rug-item[data-id="' + id + '"]').remove();
                         $('.add-checkbox[data-id="' + id + '"]').prop('checked', false);
+                        $('#add-to-cart[data-id="' + id + '"]').removeAttr('disabled');
                     }
                 }
             }
+
+            var cartCount = $('.cart-count').text();
+            if (action == 'add') {
+                cartCount = parseInt(cartCount) + 1;
+            } else {
+                cartCount = parseInt(cartCount) - 1;
+            }
+            console.log(cartCount);
+            $('.cart-count').text(cartCount);
         }
     });
+}
 
-    checkCart();
-});
 
 $("body").on("click", ".cart-item-remove", function (e) {
     e.preventDefault();
     var id = $(this).attr('data-id');
 
     var queryString = 'action=remove&id=' + id;
-    $.ajax({
-        url: "/shop/cart/process",
-        data: queryString,
-        type: "POST",
-        dataType: 'json',
-        async: false,
-        success: function (data) {
-            if (data.status == 'success') {
-                $('.cart-items').find('.rug-item[data-id="' + id + '"]').remove();
-                $('.add-checkbox[data-id="' + id + '"]').prop('checked', false);
-            }
-        }
-    });
+    var action = 'remove';
+
+    cartProcess(id, queryString, action);
+
+    // $.ajax({
+    //     url: "/shop/cart/process",
+    //     data: queryString,
+    //     type: "POST",
+    //     dataType: 'json',
+    //     async: false,
+    //     success: function (data) {
+    //         if (data.status == 'success') {
+    //             $('.cart-items').find('.rug-item[data-id="' + id + '"]').remove();
+    //             $('.add-checkbox[data-id="' + id + '"]').prop('checked', false);
+    //             $('#add-to-cart[data-id="' + id + '"]').removeAttr('disabled');
+    //         }
+    //     }
+    // });
 
     checkCart();
 });
@@ -78,3 +109,13 @@ function checkCart() {
         $('.cart-empty').show();
     }
 }
+
+$('#cart-overlay').click(function () {
+    $('#cart-wrap').removeClass('show');
+});
+
+$('.btn-cart-toggle').click(function (e) {
+    $('#cart-wrap').toggleClass('show');
+
+    e.preventDefault();
+});

@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo SITENAME; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <?php echo SITENAME; ?>
+    </title>
     <meta name="description" content="Health, tradition and beauty are paramount to Organic Looms hand-crafted rug collections. Made from the finest materials in their most natural state, each step of the process is connected to the artisan’s hand integrating innovative and sustainable fabrication techniques positively affecting our environment.">
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo MAINURLROOT; ?>favicon/apple-touch-icon.png">
@@ -32,5 +35,10 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
 </head>
 
-<body id="top">
+<body id="top" class="<?= (isset($bodyclass)) ? $bodyclass : ''; ?>">
+    <?php if (isset($_SESSION["cart_item"]) && !empty($_SESSION["cart_item"])) {
+        $cartTotal = count($_SESSION["cart_item"]);
+    } else {
+        $cartTotal = 0;
+    } ?>
     <?php require APPROOT . '/views/inc/navbar.php'; ?>

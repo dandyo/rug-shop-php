@@ -165,7 +165,7 @@ class Rug
         }
     }
 
-    public function refineSearch($params, $offset = 0, $limit = 16)
+    public function refineSearch($params, $offset = 0, $limit = null)
     {
         // $where = ' WHERE';
         $whereCount = 0;
@@ -297,7 +297,10 @@ class Rug
         //                   description LIKE '%$key%'
         //                   ");
 
-        $this->db->query('SELECT * FROM rugs' . $where .' LIMIT ' . $offset . ', ' . $limit);
+
+        $limitQuery = ($limit != null) ? ' LIMIT ' . $offset . ', ' . $limit : '';
+
+        $this->db->query('SELECT * FROM rugs' . $where . $limitQuery);
 
         $results = $this->db->resultSet();
         return $results;

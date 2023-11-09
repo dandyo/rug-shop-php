@@ -50,4 +50,8 @@
 		background-color: darken(#b3775f, 7%);
 		color: #fff;
 	}
+
+	&:disabled {
+		background-color: lighten(#b3775f, 20%);
+	}
 }
