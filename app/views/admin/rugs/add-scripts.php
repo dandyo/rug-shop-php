@@ -12,11 +12,13 @@
 </script>
 <script>
     $(function () {
+        var maxFilesNum = 4;
+
         Dropzone.options.myDropzone = {
             url: "/shop/admin/images/upload",
             paramName: "file",
             maxFilesize: 1,
-            maxFiles: 4,
+            maxFiles: maxFilesNum,
             acceptedFiles: "image/*",
             autoProcessQueue: true,
             addRemoveLinks: true,
@@ -34,6 +36,14 @@
 
                     var newfile = response.file.name + ',' + response.file.size + ',' + response.file.type;
                     $("#galleryItems").append("<input data-img='" + response.file.name + "' class='form-control' name='gallery[]' type='hidden' value='" + newfile + "'>");
+                });
+
+                this.on('addedfile', function (file) {
+                    // console.log(this.files.length)
+                    if (this.files.length > maxFilesNum) {
+                        this.removeFile(this.files[maxFilesNum]);
+                        console.log('max files exceeded')
+                    }
                 });
 
                 this.on("removedfile", function (file) {

@@ -179,6 +179,7 @@
                 <label for="" class="form-label">Gallery</label>
                 <div id="my-Dropzone" class="dropzone mb-4"></div>
                 <div id="galleryItems"></div>
+                <div class="form-text">Maximum of 4 images</div>
             </div>
 
             <div class="form-group mb-3">

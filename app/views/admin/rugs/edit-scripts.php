@@ -38,12 +38,14 @@
         });
     });
 
+    var maxFilesNum = 4;
+
     $(function () {
         Dropzone.options.myDropzone = {
             url: "/shop/admin/images/upload",
             paramName: "file",
             maxFilesize: 1,
-            maxFiles: 4,
+            maxFiles: maxFilesNum,
             acceptedFiles: "image/*",
             autoProcessQueue: true,
             addRemoveLinks: true,
@@ -58,12 +60,20 @@
                 $.getJSON('/shop/admin/images/get/<?= $data['rug']->id ?>', function (data) {
                     // console.log(data);
                     $.each(data, function (index, val) {
-                        var mockFile = { name: val.name, size: val.size };
+                        var mockFile = { name: val.name, size: val.size, accepted: true };
                         myDropzone.options.addedfile.call(myDropzone, mockFile);
                         myDropzone.options.thumbnail.call(myDropzone, mockFile, "/shop/uploads/" + val.name);
                         myDropzone.emit("complete", mockFile);
+                        myDropzone.files.push(mockFile);
                     });
+                });
 
+                this.on('addedfile', function (file) {
+                    // console.log(this.files.length)
+                    if (this.files.length > maxFilesNum) {
+                        this.removeFile(this.files[maxFilesNum]);
+                        console.log('max files exceeded')
+                    }
                 });
 
                 this.on("success", function (file, response) {

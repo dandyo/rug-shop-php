@@ -202,7 +202,7 @@
                     }
                     ?>
                 </div>
-
+                <div class="form-text">Maximum of 4 images</div>
             </div>
 
             <div class="form-group mb-5">
