@@ -6,15 +6,7 @@
                     <div class="col-inner">
                         <h3>Organic Looms</h3>
                         <ul>
-                            <li>
-                                <a href="#footerCollapse1" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="footerCollapse1">Organic Looms Inventory</a>
-                                <div class="collapse" id="footerCollapse1">
-                                    <ul>
-                                        <li><a href="/scottsdale.html">Scottsdale Location</a></li>
-                                        <li><a href="/prescott.html">Prescott Location</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                            <li><a href="/shop">Organic Looms Inventory</a></li>
                             <li><a href="/warehouse-inventory.html">Warehouse Inventory</a></li>
                             <li><a href="/about.html" class="scroll">About Us</a></li>
                             <li><a href="/press.html">Press</a></li>
@@ -42,13 +34,12 @@
                 <div class="col">
                     <div class="col-inner">
                         <h3>Hours</h3>
-                        <p>Mon &nbsp; 9:00am to 4pm<br>
-                            Tues &nbsp; 9:00am to 4pm<br>
-                            Wed &nbsp; 9:00am to 4pm<br>
-                            Thu &nbsp; 9:00am to 4pm<br>
-                            Fri &nbsp; 9:00am to 4pm<br>
-                            Sat by appointment<br>
-                            Sun by appointment
+                        <p>Mon &nbsp; 9:00am to 5:00pm<br>
+                            Tues &nbsp; 9:00am to 5:00pm<br>
+                            Wed &nbsp; 9:00am to 5:00pm<br>
+                            Thu &nbsp; 9:00am to 5:00pm<br>
+                            Fri &nbsp; 9:00am to 5:00pm<br>
+                            Sat & Sun by appointment
                         </p>
                     </div>
                 </div>
@@ -114,18 +105,18 @@
 <script src="<?php echo MAINURLROOT; ?>js/subscribe.js"></script>
 <script src="https://www.google.com/recaptcha/api.js?render=6LeoZbUoAAAAAOP9GCudF5W0vdGSpF130_xqMbfy"></script>
 <script>
-    grecaptcha.ready(function() {
+    grecaptcha.ready(function () {
         grecaptcha.execute('6LeoZbUoAAAAAOP9GCudF5W0vdGSpF130_xqMbfy', {
             action: 'contact'
-        }).then(function(token) {
+        }).then(function (token) {
             document.getElementById("token2").value = token;
             document.getElementById('submitBtn2').disabled = false;
         });
         // refresh token every minute to prevent expiration
-        setInterval(function() {
+        setInterval(function () {
             grecaptcha.execute('6LeoZbUoAAAAAOP9GCudF5W0vdGSpF130_xqMbfy', {
                 action: 'contact'
-            }).then(function(token) {
+            }).then(function (token) {
                 // console.log( 'refreshed token:', token );
                 document.getElementById("token2").value = token;
             });

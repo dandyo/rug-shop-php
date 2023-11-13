@@ -16,12 +16,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" title="Organic Looms Inventory" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Organic Looms Inventory</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/scottsdale.html" title="Scottsdale Location">Scottsdale Location</a></li>
-                                <li><a class="dropdown-item" href="/prescott.html" title="Prescott Location">Prescott Location</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shop" title="Organic Looms Inventory">Organic Looms Inventory</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/warehouse-inventory.html" title="Warehouse Inventory">Warehouse Inventory</a>

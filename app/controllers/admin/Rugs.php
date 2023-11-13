@@ -107,6 +107,7 @@ class Rugs extends Controller
                 'age' => trim($_POST['age']),
                 'construction' => trim($_POST['construction']),
                 'image' => $_FILES['image'],
+                'gallery' => '',
                 'description' => trim($_POST['description']),
                 'new_image' => '',
                 'asset_number_err' => '',
@@ -115,6 +116,12 @@ class Rugs extends Controller
                 'image_err' => '',
                 'variables' => $vars
             ];
+
+            if (!empty($_POST['gallery'])) {
+                $gallery = $_POST['gallery'];
+
+                $data['gallery'] = serialize($gallery);
+            }
 
             if (empty($data['asset_number'])) {
                 $data['asset_number_err'] = 'Please input asset number';
@@ -239,6 +246,7 @@ class Rugs extends Controller
                 'age' => trim($_POST['age']),
                 'construction' => trim($_POST['construction']),
                 'image' => $_FILES['image'],
+                'gallery' => '',
                 'exist_image' => trim($_POST['exist_image']),
                 'description' => trim($_POST['description']),
                 'new_image' => '',
@@ -249,6 +257,11 @@ class Rugs extends Controller
             ];
 
             $error = '';
+
+            if (!empty($_POST['gallery'])) {
+                $gallery = $_POST['gallery'];
+                $data['gallery'] = serialize($gallery);
+            }
 
             if (empty($data['image']['name'])) {
                 if (empty($data['exist_image'])) {

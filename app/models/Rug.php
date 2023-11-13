@@ -59,7 +59,7 @@ class Rug
 
     public function addRug($data)
     {
-        $this->db->query('INSERT INTO rugs (location, asset_number, design_name, shape, size_width_ft, size_length_ft, size_width_in, size_length_in, material, collection, primary_color, secondary_color, age, construction, image, description) VALUES(:location, :asset_number, :design_name, :shape, :size_width_ft, :size_length_ft, :size_width_in, :size_length_in, :material, :collection, :primary_color, :secondary_color, :age, :construction, :image, :description)');
+        $this->db->query('INSERT INTO rugs (location, asset_number, design_name, shape, size_width_ft, size_length_ft, size_width_in, size_length_in, material, collection, primary_color, secondary_color, age, construction, image, gallery, description) VALUES(:location, :asset_number, :design_name, :shape, :size_width_ft, :size_length_ft, :size_width_in, :size_length_in, :material, :collection, :primary_color, :secondary_color, :age, :construction, :image, :gallery, :description)');
 
         $this->db->bind(':location', $data['location']);
         $this->db->bind(':asset_number', $data['asset_number']);
@@ -76,6 +76,7 @@ class Rug
         $this->db->bind(':age', $data['age']);
         $this->db->bind(':construction', $data['construction']);
         $this->db->bind(':image', $data['new_image']);
+        $this->db->bind(':gallery', $data['gallery']);
         $this->db->bind(':description', $data['description']);
 
         if ($this->db->execute()) {
@@ -87,7 +88,7 @@ class Rug
 
     public function updateRug($data)
     {
-        $this->db->query('UPDATE rugs SET location=:location, asset_number=:asset_number, design_name=:design_name, shape=:shape, size_width_ft=:size_width_ft,size_length_ft=:size_length_ft,size_width_in=:size_width_in, size_length_in=:size_length_in, material=:material, collection=:collection, primary_color=:primary_color, secondary_color=:secondary_color, age=:age, construction=:construction, image=:image, description=:description WHERE id =:id');
+        $this->db->query('UPDATE rugs SET location=:location, asset_number=:asset_number, design_name=:design_name, shape=:shape, size_width_ft=:size_width_ft,size_length_ft=:size_length_ft,size_width_in=:size_width_in, size_length_in=:size_length_in, material=:material, collection=:collection, primary_color=:primary_color, secondary_color=:secondary_color, age=:age, construction=:construction, image=:image, gallery=:gallery, description=:description WHERE id =:id');
 
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':location', $data['location']);
@@ -105,6 +106,7 @@ class Rug
         $this->db->bind(':age', $data['age']);
         $this->db->bind(':construction', $data['construction']);
         $this->db->bind(':image', $data['image']);
+        $this->db->bind(':gallery', $data['gallery']);
         $this->db->bind(':description', $data['description']);
 
         if ($this->db->execute()) {
@@ -162,10 +164,10 @@ class Rug
         if (!empty($params)) {
             $where = ' WHERE';
 
-            if (!empty($params['shape'])) {
-                $where = $where . ' shape = "' . $params['shape'] . '"';
-                $whereCount++;
-            }
+            // if (!empty($params['shape'])) {
+            //     $where = $where . ' shape = "' . $params['shape'] . '"';
+            //     $whereCount++;
+            // }
 
             if (!empty($params['size_width_ft_min']) && !empty($params['size_width_ft_max'])) {
                 if ($whereCount > 0) {
@@ -227,7 +229,7 @@ class Rug
                 if ($whereCount > 0) {
                     $where = $where . ' AND';
                 }
-                $where = $where . ' construction IN ("' . implode('","', $params['construction']) . '")';
+                $where = $where . ' construction = "' . $params['construction'] . '"';
                 $whereCount++;
             }
 

@@ -1,3 +1,4 @@
+<?php $headerStyles = '<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />'; ?>
 <?php require APPROOT . '/views/inc/rug-options.php'; ?>
 <?php require APPROOT . '/views/incadmin/header.php'; ?>
 <div class="row justify-content-center">
@@ -160,6 +161,11 @@
                 </select>
             </div>
 
+            <div class="form-group mb-3">
+                <label for="" class="form-label">Description</label>
+                <textarea name="description" class="form-control" rows="3"><?= $data['description']; ?></textarea>
+            </div>
+
             <div class="form-group">
                 <label for="" class="form-label">Image *</label>
                 <input type="file" class="form-control mb-3 <?= (!empty($data['image_err'])) ? 'is-invalid' : ''; ?>" name="image" id="image" onchange="loadFile(event)">
@@ -170,8 +176,9 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="" class="form-label">Description</label>
-                <textarea name="description" class="form-control" rows="5"><?= $data['description']; ?></textarea>
+                <label for="" class="form-label">Gallery</label>
+                <div id="my-Dropzone" class="dropzone mb-4"></div>
+                <div id="galleryItems"></div>
             </div>
 
             <div class="form-group mb-3">
@@ -180,20 +187,5 @@
         </form>
     </div>
 </div>
-<?php
-$footerScripts = '<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-<script>
-    var loadFile = function(event) {
-        var output = document.getElementById("image-preview");
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-        }
-
-        $("#image-preview").addClass("mb-3");
-      };
-</script>
-';
-?>
-
+<?php $page = 'add-rugs'; ?>
 <?php require APPROOT . '/views/incadmin/footer.php'; ?>

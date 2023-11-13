@@ -75,7 +75,7 @@ class Admin extends Controller
 
                             //if uploaded image is exceeding max size then compress it
                             if (($_FILES['image']['size'] >= $maxsize)) {
-                                $data['image_err'] =  "Uploaded image size is greater than $maxsize.<br>";
+                                $data['image_err'] = "Uploaded image size is greater than $maxsize.<br>";
                                 compressimage($_FILES['image']['tmp_name'], $name, $maxwidth); // resize it to 512pixels width
                             } else {
                                 // echo "This image is just nice.<br>";
@@ -84,7 +84,7 @@ class Admin extends Controller
 
                             $data['new_image'] = $newppic . "." . $extension;
                         } else {
-                            $data['image_err'] =  "Image file is not valid. Please try uploading another image.";
+                            $data['image_err'] = "Image file is not valid. Please try uploading another image.";
                         }
                     }
                 } catch (Exception $e) {

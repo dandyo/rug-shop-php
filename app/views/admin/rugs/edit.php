@@ -1,3 +1,4 @@
+<?php $headerStyles = '<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />'; ?>
 <?php require APPROOT . '/views/inc/rug-options.php'; ?>
 <?php require APPROOT . '/views/incadmin/header.php'; ?>
 <div class="row justify-content-center">
@@ -11,7 +12,7 @@
             </div>
         </div>
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" id="rugEditForm">
             <div class="form-group mb-3">
                 <label for="" class="form-label">Location</label>
                 <select name="location" class="form-control">
@@ -156,11 +157,16 @@
             </div>
 
             <div class="form-group mb-3">
+                <label for="" class="form-label">Description</label>
+                <textarea name="description" class="form-control" rows="3"><?= $data['rug']->description; ?></textarea>
+            </div>
+
+            <div class="form-group mb-3">
                 <?php
                 $src = ($data['rug']->image) ? URLROOT . 'uploads/' . $data['rug']->image : '';
                 ?>
 
-                <label for="" class="form-label">Image</label>
+                <label for="" class="form-label">Featured Image</label>
                 <input type="file" class="form-control mb-3 <?= (!empty($data['image_err'])) ? 'is-invalid' : ''; ?>" name="image" id="image" onchange="loadFile(event)" style="<?php echo (!empty($data['rug']->image)) ? 'display:none;' : '' ?>">
                 <input type="hidden" id="exist_image" name="exist_image" value="<?= $data['rug']->image; ?>">
                 <div class="row" id="image-preview-wrap">
@@ -179,53 +185,31 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="" class="form-label">Description</label>
-                <textarea name="description" class="form-control" rows="5"><?= $data['rug']->description; ?></textarea>
+                <label for="" class="form-label">Gallery</label>
+                <div id="my-Dropzone" class="dropzone mb-4"></div>
+                <div id="galleryItems">
+                    <?php
+                    $gallery = array();
+                    ;
+                    if (!empty($data['rug']->gallery)) {
+                        $gallery = unserialize($data['rug']->gallery);
+
+                        // print_r($gallery);
+                        foreach ($gallery as $key => $value) {
+                            $varArr = explode(',', $value);
+                            echo '<input data-img="' . $varArr[0] . '" class="form-control" name="gallery[]" type="hidden" value="' . $value . '">';
+                        }
+                    }
+                    ?>
+                </div>
+
             </div>
 
-            <div class="form-group mb-3">
-                <input type="submit" class="btn btn-primary px-4" value="Update" />
+            <div class="form-group mb-5">
+                <button type="submit" class="btn btn-primary px-4" id="submit">Update</button>
             </div>
         </form>
     </div>
 </div>
-<?php
-$footerScripts = '<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-<script>
-    var loadFile = function(event) {
-        var output = document.getElementById("image-preview");
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-        }
-
-        $("#removeimg").show();
-    };
-    
-    $("#removeimg").click(function(e){
-        e.preventDefault();
-        var exist_image = $("#exist_image").val();
-        $("#image").show();
-        console.log(exist_image);
-
-        $.ajax({
-            type: "POST",
-            url: "' . URLROOT . 'admin/rugs/removeimg",
-            data: { "id": "' . $data['rug']->id . '"},
-            success: function (data) { 
-                console.log(data);
-                //if(data == "success") {
-                    $("#exist_image").val("");
-                    $("#image-preview").attr("src", "");
-                    $("#removeimg").hide();
-                //}
-            }
-        });
-
-        
-      });
-</script>
-';
-?>
-
+<?php $page = 'edit-rugs'; ?>
 <?php require APPROOT . '/views/incadmin/footer.php'; ?>

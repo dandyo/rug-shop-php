@@ -81,8 +81,8 @@
                             <td>
                                 <?= $rug->size_width_ft; ?>'
                                 <?= $rug->size_width_in; ?>" x
-                                <?= $rug->size_height_ft; ?>'
-                                <?= $rug->size_height_in; ?>"
+                                <?= $rug->size_length_ft; ?>'
+                                <?= $rug->size_length_in; ?>"
                             </td>
                             <td><a href="<?= URLROOT . 'rugs/' . $rug->id; ?>" target="_blank" class="btn btn-primary"><span class="icon-info"></span></a></td>
                         </tr>

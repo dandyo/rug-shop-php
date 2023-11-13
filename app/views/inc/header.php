@@ -41,4 +41,7 @@
     } else {
         $cartTotal = 0;
     } ?>
+    <span id="cartCount" class="cart-count d-none">
+        <?= $cartTotal; ?>
+    </span>
     <?php require APPROOT . '/views/inc/navbar.php'; ?>

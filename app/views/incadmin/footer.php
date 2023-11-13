@@ -5,6 +5,14 @@
 <?php if (isset($footerScripts)) {
     echo $footerScripts;
 } ?>
+<?php if (isset($page)) {
+    if ($page == "edit-rugs") {
+        require APPROOT . '/views/admin/rugs/edit-scripts.php';
+    }
+    if ($page == "add-rugs") {
+        require APPROOT . '/views/admin/rugs/add-scripts.php';
+    }
+} ?>
 </body>
 
 </html>

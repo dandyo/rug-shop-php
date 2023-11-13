@@ -89,3 +89,20 @@ select.form-control {
           }
      }
 }
+
+
+.dropzone {
+     padding: 0;
+
+     .dz-preview {
+          .dz-image {
+               border-radius: 0;
+
+               img {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+               }
+          }
+     }
+}

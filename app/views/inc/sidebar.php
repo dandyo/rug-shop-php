@@ -21,30 +21,11 @@ $countries = json_decode($json, TRUE);
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                            Shape & Size
+                            Size
                         </button>
                     </h2>
-                    <div id="collapse2" class="accordion-collapse collapse <?= (isset($_GET['shape']) && $_GET['shape'] != '' || isset($_GET['size_width_ft_min']) && !empty($_GET['size_width_ft_min'])) ? 'show' : ''; ?>">
+                    <div id="collapse2" class="accordion-collapse collapse <?= (isset($_GET['size_width_ft_min']) && !empty($_GET['size_width_ft_min'])) ? 'show' : ''; ?>">
                         <div class="accordion-body">
-                            <div class="mb-3">
-                                <?php
-                                $select_shape = '';
-                                if (isset($_GET['shape']) && $_GET['shape'] != '') {
-                                    $select_shape = $_GET['shape'];
-                                }
-                                ;
-                                ?>
-                                <select class="form-control" name="shape">
-                                    <option value="">All Shapes</option>
-                                    <?php
-                                    // unset($shape[0]);
-                                    foreach ($shape as $c):
-                                        $s = ($select_shape == $c['value']) ? 'selected' : '';
-                                        echo '<option value="' . $c['value'] . '" ' . $s . '>' . $c['value'] . '</option>';
-                                    endforeach;
-                                    ?>
-                                </select>
-                            </div>
                             <div>
                                 <div class="card mb-3">
                                     <div class="card-header text-center">
@@ -136,6 +117,33 @@ $countries = json_decode($json, TRUE);
                         </div>
                     </div>
                 </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                            Construction
+                        </button>
+                    </h2>
+                    <?php
+                    $select_construction = '';
+                    if (isset($_GET['construction']) && $_GET['construction'] != '') {
+                        $select_construction = $_GET['construction'];
+                    } ?>
+                    <div id="collapse8" class="accordion-collapse collapse <?= (!empty($select_construction)) ? 'show' : ''; ?>">
+                        <div class="accordion-body">
+                            <select class="form-control" name="construction">
+                                <option value="">All Shapes</option>
+                                <?php
+                                foreach ($construction as $c):
+                                    $s = ($select_construction == $c['value']) ? 'selected' : '';
+                                    echo '<option value="' . $c['value'] . '" ' . $s . '>' . $c['value'] . '</option>';
+                                endforeach;
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
@@ -230,32 +238,6 @@ $countries = json_decode($json, TRUE);
                                 endforeach;
                                 ?>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-                            Construction
-                        </button>
-                    </h2>
-                    <?php
-                    $select_construction = [];
-                    if (isset($_GET['construction']) && $_GET['construction'] != '') {
-                        $select_construction = $_GET['construction'];
-                    } ?>
-                    <div id="collapse8" class="accordion-collapse collapse <?= (!empty($select_construction)) ? 'show' : ''; ?>">
-                        <div class="accordion-body">
-                            <?php
-                            foreach ($construction as $k => $c):
-                                $checked = (in_array($c['value'], $select_construction)) ? 'checked' : '';
-                                echo '<div class="form-check">
-                            <input name="construction[]" class="form-check-input" type="checkbox" value="' . $c['value'] . '" id="construction-' . $k . '" ' . $checked . '> 
-                            <label class="form-check-label" for="construction-' . $k . '">' . $c['value'] . '</label>
-                            </div>';
-                            endforeach;
-                            ?>
                         </div>
                     </div>
                 </div>

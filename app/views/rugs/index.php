@@ -1,3 +1,5 @@
+<?php $headerStyles = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css" integrity="sha512-eMxdaSf5XW3ZW1wZCrWItO2jZ7A9FhuZfjVdztr7ZsKNOmt6TUMTQgfpNoVRyfPE5S9BC0A4suXzsGSrAOWcoQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />'; ?>
+
 <?php $bodyclass = 'rug-single'; ?>
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="page-banner">
@@ -12,7 +14,21 @@
                 <p class="d-flex align-item-center"><a href="/shop"><span class="icon icon-chevron-thin-left"></span> Back to shop</a></p>
                 <div class="row mb-4">
                     <div class="col-md-6 mb-4 mb-md-0">
-                        <img src="<?= URLROOT . 'uploads/'; ?><?= $data['rug']->image; ?>" alt="" class="w-100">
+                        <div class="image-slider-wrap">
+                            <div class="image-slider">
+                                <div class="image-slider-item">
+                                    <img src="<?= URLROOT . 'uploads/' . $data['rug']->image; ?>" alt="" class="w-100">
+                                </div>
+                                <?php if (!empty($data['rug']->gallery)) {
+                                    $galleries = unserialize($data['rug']->gallery);
+                                    foreach ($galleries as $key => $value) {
+                                        $gallery = explode(',', $value);
+                                        echo '<div class="image-slider-item"><img src="' . URLROOT . "uploads/" . $gallery[0] . '" alt="" class="w-100"></div>';
+                                    }
+                                    // print_r($gallery);
+                                } ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="bg-white p-3 h-100">
@@ -121,6 +137,23 @@ $footerScripts = '
 <script>var URLROOT = "' . URLROOT . '";</script>
 <script src="' . URLROOT . 'js/sidebar.js"></script>
 <script src="' . URLROOT . 'js/cart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js" integrity="sha512-8Uje515O2sp28OsddCuTXqV/Xc9fgNZvSnCefU4BfxD06b1nA7z0lT4OrXT50I0oLqCi4gmyxfqP0ZjRbNWrmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function($) {
+        var slider = tns({
+            mode: "carousel",
+            container: ".image-slider",
+            items: 1,
+            nav: true,
+            controls: true,
+            controlsPosition: "bottom",
+            navPosition: "bottom",
+            autoplayButtonOutput: false,
+            autoplay: true,
+            controlsText: ["<span class=\'icon-chevron-thin-left\'></span>","<span class=\'icon-chevron-thin-right\'></span>"]
+        });
+    });
+</script>
 ';
 ?>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

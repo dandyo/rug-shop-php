@@ -152,34 +152,6 @@
         </div>
 
         <div class="mb-4">
-            <form action="" method="post" class="formVariable" data-type="shape">
-                <input type="hidden" name="type" value="shape">
-                <div class="form-group mb-3">
-                    <label class="form-label">Shapes</label> <span class="d-inline-block ms-2 alert--shape text-danger"></span>
-                    <div class="row">
-                        <div class="col pe-0">
-                            <input type="text" name="value" class="form-control" placeholder="Add shape" required />
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary"><span class="icon icon-plus"></span></button>
-                        </div>
-                    </div>
-
-                </div>
-            </form>
-
-            <div class="var-list var-list--shape">
-                <?php
-                if (!empty($data['variables']['shape'])) {
-                    foreach ($data['variables']['shape'] as $key => $var) {
-                        echo '<span data-id="var-' . $var['id'] . '" data-src="/shop/admin/settings/varupdate/' . $var['id'] . '" class="var-item" data-type="ajax" data-filter="#main" data-fancybox>' . $var['value'] . '</span>';
-                    }
-                }
-                ?>
-            </div>
-        </div>
-
-        <div class="mb-4">
             <form action="" method="post" class="formVariable" data-type="color">
                 <input type="hidden" name="type" value="color">
                 <div class="form-group mb-3">

@@ -3,7 +3,6 @@ $("body").on("click", ".add-checkbox", function () {
     var queryString = '';
     var action = '';
     if ($(this).is(':checked')) {
-        console.log(id);
         queryString = 'action=add&id=' + id;
         action = 'add';
     } else {
@@ -58,14 +57,15 @@ function cartProcess(id, queryString, action) {
                 }
             }
 
-            var cartCount = $('.cart-count').text();
+            let count = 0;
+            var cartCount = $('#cartCount').text();
+            cartCount = cartCount.trim();
             if (action == 'add') {
-                cartCount = parseInt(cartCount) + 1;
-            } else {
-                cartCount = parseInt(cartCount) - 1;
+                count = parseInt(cartCount, 10) + 1;
+            } else if (action == 'remove') {
+                count = parseInt(cartCount, 10) - 1;
             }
-            console.log(cartCount);
-            $('.cart-count').text(cartCount);
+            $('.cart-count').text(count);
         }
     });
 }
@@ -79,21 +79,6 @@ $("body").on("click", ".cart-item-remove", function (e) {
     var action = 'remove';
 
     cartProcess(id, queryString, action);
-
-    // $.ajax({
-    //     url: "/shop/cart/process",
-    //     data: queryString,
-    //     type: "POST",
-    //     dataType: 'json',
-    //     async: false,
-    //     success: function (data) {
-    //         if (data.status == 'success') {
-    //             $('.cart-items').find('.rug-item[data-id="' + id + '"]').remove();
-    //             $('.add-checkbox[data-id="' + id + '"]').prop('checked', false);
-    //             $('#add-to-cart[data-id="' + id + '"]').removeAttr('disabled');
-    //         }
-    //     }
-    // });
 
     checkCart();
 });
