@@ -14,7 +14,7 @@ class Users extends Controller
             //process form 
 
             //sanitize POST data
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = [
                 'name' => trim($_POST['name']),
@@ -98,7 +98,7 @@ class Users extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = [
                 'email' => trim($_POST['email']),
@@ -154,7 +154,7 @@ class Users extends Controller
             $this->view('users/login', $data);
         }
     }
-    public function  createUserSession($user)
+    public function createUserSession($user)
     {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['email'] = $user->email;

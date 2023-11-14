@@ -28,7 +28,7 @@ class Rugs extends Controller
                     $page = 1;
                 }
 
-                $no_of_records_per_page = 10;
+                $no_of_records_per_page = 20;
 
                 $key = $_GET['search'];
                 $rugs = $this->rugModel->searchRugs($key);
@@ -90,7 +90,7 @@ class Rugs extends Controller
         $vars = $this->variableModel->getAllVariables();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
             $data = [
                 'location' => trim($_POST['location']),
                 'asset_number' => trim($_POST['asset_number']),
@@ -227,7 +227,7 @@ class Rugs extends Controller
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = [
                 'id' => $id,

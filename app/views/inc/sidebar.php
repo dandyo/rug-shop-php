@@ -150,9 +150,14 @@ $countries = json_decode($json, TRUE);
                             Design #
                         </button>
                     </h2>
-                    <div id="collapse3" class="accordion-collapse collapse">
+                    <?php
+                    $design_number = "";
+                    if (isset($_GET['design_number']) && $_GET['design_number'] != '') {
+                        $design_number = $_GET['design_number'];
+                    } ?>
+                    <div id="collapse3" class="accordion-collapse collapse <?= (!empty($design_number)) ? 'show' : ''; ?>">
                         <div class="accordion-body">
-                            <input type="text" class="form-control" name="design_number" placeholder="Design Number" value="" />
+                            <input type="text" class="form-control" name="design_number" placeholder="Design Number" value="<?= $design_number; ?>" />
                         </div>
                     </div>
                 </div>

@@ -31,7 +31,7 @@ class Admin extends Controller
     public function add_rug()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
             $data = [
                 'location' => trim($_POST['location']),
                 'asset_number' => trim($_POST['asset_number']),

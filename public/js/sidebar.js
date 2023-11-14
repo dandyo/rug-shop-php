@@ -45,17 +45,26 @@ var arrayClean = function (thisArray, thisName) {
     });
 }
 
+
 $('.search-params .badge').click(function () {
+    var sizeArr = ['size_width_ft_min', 'size_width_in_min', 'size_width_ft_max', 'size_width_in_max', 'size_length_ft_min', 'size_length_in_min', 'size_length_ft_max', 'size_length_in_max'];
+
     var type = $(this).attr('data-param');
 
     var forminputs = $('#search-filters').serializeArray();
 
     for (var key in forminputs) {
+        console.log(forminputs[key].name);
         if (forminputs[key].name == type) {
+            forminputs.splice(key, 1);
+        } else if (sizeArr.includes(forminputs[key].name)) {
+            console.log('includes');
             forminputs.splice(key, 1);
         }
     }
 
-    var url = $.param(forminputs);
-    window.location.replace('?' + url);
+    console.log(forminputs);
+
+    // var url = $.param(forminputs);
+    // window.location.replace('?' + url);
 });

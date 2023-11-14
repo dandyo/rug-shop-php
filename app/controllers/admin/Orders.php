@@ -31,7 +31,7 @@ class Orders extends Controller
                     $page = 1;
                 }
 
-                $no_of_records_per_page = 10;
+                $no_of_records_per_page = 20;
 
                 $orders = $this->orderModel->searchOrders($key);
 
@@ -57,7 +57,7 @@ class Orders extends Controller
                     $page = 1;
                 }
 
-                $no_of_records_per_page = 10;
+                $no_of_records_per_page = 20;
 
                 $orders = $this->orderModel->getOrders();
 
@@ -98,7 +98,7 @@ class Orders extends Controller
     public function edit($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = [
                 'id' => $id,

@@ -26,45 +26,51 @@
         </form>
     </div>
 </div>
-<table class="table mb-4 mb-md-5">
-    <thead>
-        <tr>
-            <th>Image</th>
-            <th>Location</th>
-            <th>Asset #</th>
-            <th>Design</th>
-            <th>Size</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($data['rugs'] as $rug): ?>
+<div class="table-responsive">
+    <table class="table mb-4 mb-md-5">
+        <thead>
             <tr>
-                <td><img src="<?= URLROOT . 'uploads/'; ?><?= $rug->image; ?>" alt="" width="100"></td>
-                <td>
-                    <?= $rug->location; ?>
-                </td>
-                <td>
-                    <?= $rug->asset_number; ?>
-                </td>
-                <td>
-                    <?= $rug->design_name; ?>
-                </td>
-                <td>
-                    <?= $rug->size_width_ft; ?>'
-                    <?= $rug->size_width_in; ?>" x
-                    <?= $rug->size_length_ft; ?>'
-                    <?= $rug->size_length_in; ?>"
-                </td>
-                <td>
-                    <a data-src="<?= URLROOT; ?>admin/rugs/show/<?= $rug->id; ?>" data-type="ajax" data-fancybox class="btn btn-primary"><span class="icon-info"></span></a>
-                    <a href="<?= URLROOT; ?>admin/rugs/edit/<?= $rug->id; ?>" class="btn btn-success">Edit</a>
-                    <a href="<?= URLROOT; ?>admin/rugs/delete/<?= $rug->id; ?>" class="btn btn-danger">Delete</a>
-                </td>
+                <th>Image</th>
+                <th>Location</th>
+                <th class="not-break">Asset #</th>
+                <th>Design</th>
+                <th>Size</th>
+                <th>Action</th>
             </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php foreach ($data['rugs'] as $rug): ?>
+                <tr>
+                    <td><img src="<?= URLROOT . 'uploads/'; ?><?= $rug->image; ?>" alt="" width="100"></td>
+                    <td>
+                        <?= $rug->location; ?>
+                    </td>
+                    <td>
+                        <?= $rug->asset_number; ?>
+                    </td>
+                    <td>
+                        <?= $rug->design_name; ?>
+                    </td>
+                    <td>
+                        <span class="not-break">
+                            <?= $rug->size_width_ft; ?>'
+                            <?= $rug->size_width_in; ?>" x
+                            <?= $rug->size_length_ft; ?>'
+                            <?= $rug->size_length_in; ?>"
+                        </span>
+                    </td>
+                    <td>
+                        <span class="not-break">
+                            <a data-src="<?= URLROOT; ?>admin/rugs/show/<?= $rug->id; ?>" data-type="ajax" data-fancybox class="btn btn-primary"><span class="icon-info"></span></a>
+                            <a href="<?= URLROOT; ?>admin/rugs/edit/<?= $rug->id; ?>" class="btn btn-success">Edit</a>
+                            <a href="<?= URLROOT; ?>admin/rugs/delete/<?= $rug->id; ?>" class="btn btn-danger">Delete</a>
+                        </span>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 <div>
     <?php
     $next = 0;

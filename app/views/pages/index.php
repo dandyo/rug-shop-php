@@ -1,3 +1,7 @@
+<?php
+$sizeArray = array('size_width_ft_min', 'size_width_in_min', 'size_width_ft_max', 'size_width_in_max', 'size_length_ft_min', 'size_length_in_min', 'size_length_ft_max', 'size_length_in_max');
+$sizeFlag = false;
+?>
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="page-banner">
     <div class="container-xl">
@@ -15,11 +19,22 @@
                 if (isset($_GET) && !empty($_GET)) {
                     $params = $_GET;
                     echo '<div class="search-params mb-4">';
+
                     foreach ($params as $key => $value) {
                         // print_r($value) . '<br>';
                         if (!empty($value) && $key != 'page') {
                             $brackets = (is_array($value)) ? "[]" : "";
-                            echo '<span class="badge text-bg-primary" data-param="' . $key . '' . $brackets . '">' . $key . ' <i class="icon icon-cross"></i></span> ';
+
+                            if (in_array($key, $sizeArray)) {
+                                if ($sizeFlag == false) {
+                                    $sizeFlag = true;
+                                    $key = 'size';
+                                } else {
+                                    $key = "";
+                                }
+                            }
+
+                            echo (!empty($key)) ? '<span class="badge text-bg-primary" data-param="' . $key . '' . $brackets . '">' . ucfirst(str_replace('_', ' ', $key)) . ' <i class="icon icon-cross"></i></span> ' : '';
                         }
                     }
                     echo '</div>';
