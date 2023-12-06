@@ -16,6 +16,11 @@
                         <p class="help-block text-danger red mb-0"></p>
                     </div>
                     <div class="form-group mb-3">
+                        <label for="" class="form-label">Company Name</label>
+                        <input type="text" class="form-control" name="company">
+                        <p class="help-block text-danger red mb-0"></p>
+                    </div>
+                    <div class="form-group mb-3">
                         <label for="" class="form-label">Email *</label>
                         <input type="email" class="form-control" name="email" required>
                         <p class="help-block text-danger red mb-0"></p>

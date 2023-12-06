@@ -26,9 +26,10 @@ class Order
 
     public function addOrder($data)
     {
-        $this->db->query('INSERT INTO orders (name, email, phone, address1, address2, city, state, zip, cart, status) VALUES(:name, :email, :phone, :address1, :address2, :city, :state, :zip, :cart, :status)');
+        $this->db->query('INSERT INTO orders (name, company, email, phone, address1, address2, city, state, zip, cart, status) VALUES(:name, :company, :email, :phone, :address1, :address2, :city, :state, :zip, :cart, :status)');
 
         $this->db->bind(':name', $data['name']);
+        $this->db->bind(':company', $data['company']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':phone', $data['phone']);
         $this->db->bind(':address1', $data['address1']);

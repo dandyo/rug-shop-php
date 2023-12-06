@@ -20,6 +20,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>Company</th>
+                    <td>
+                        <?= $data['order']->company; ?>
+                    </td>
+                </tr>
+                <tr>
                     <th>Email</th>
                     <td>
                         <a href="mailto:<?= $data['order']->email; ?>">

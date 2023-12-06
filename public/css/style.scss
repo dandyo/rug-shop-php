@@ -268,6 +268,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #cart-wrap {
+    max-width: 300px;
+
+    @media (min-width: 1400px) {
+        max-width: 300px;
+    }
+
     &.show {
         #cart {
             @media (max-width: 991px) {
@@ -383,6 +389,13 @@ input[type=number]::-webkit-outer-spin-button {
             font-size: 8px;
             margin-left: 4px;
         }
+    }
+}
+
+.col-sidebar {
+    @media (min-width: 768px) {
+        max-width: 290px;
+        width: 100%;
     }
 }
 

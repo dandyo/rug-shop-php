@@ -30,6 +30,7 @@
             <tr>
                 <th>Status</th>
                 <th>Name</th>
+                <th>Company</th>
                 <th>Adress</th>
                 <th>Cart</th>
                 <th>Date</th>
@@ -50,6 +51,9 @@
                     </td>
                     <td>
                         <?= $order->name; ?>
+                    </td>
+                    <td>
+                        <?= $order->company; ?>
                     </td>
                     <td>
                         <?= $order->address1 . ', '; ?>

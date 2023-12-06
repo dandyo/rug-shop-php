@@ -169,7 +169,7 @@ class Rug
             //     $whereCount++;
             // }
 
-            if (!empty($params['size_width_ft_min']) && !empty($params['size_width_ft_max'])) {
+            if (isset($params['size_width_ft_min']) && $params['size_width_ft_min'] != "" && isset($params['size_width_ft_max']) && $params['size_width_ft_max'] != "") {
                 if ($whereCount > 0) {
                     $where = $where . ' AND';
                 }
@@ -177,15 +177,27 @@ class Rug
                 $whereCount++;
             }
 
-            if (!empty($params['size_width_in_min']) && !empty($params['size_width_in_max'])) {
+            if (isset($params['size_width_in_min']) && $params['size_width_in_min'] != "" && isset($params['size_width_in_max']) && $params['size_width_in_max'] != "") {
                 if ($whereCount > 0) {
                     $where = $where . ' AND';
                 }
                 $where = $where . ' size_width_in BETWEEN ' . $params['size_width_in_min'] . ' AND ' . $params['size_width_in_max'] . '';
                 $whereCount++;
+            } else if (isset($params['size_width_in_min']) && $params['size_width_in_min'] != "" && empty($params['size_width_in_max'])) {
+                if ($whereCount > 0) {
+                    $where = $where . ' AND';
+                }
+                $where = $where . ' size_width_in BETWEEN ' . $params['size_width_in_min'] . ' AND 0';
+                $whereCount++;
+            } else if (empty($params['size_width_in_min']) && isset($params['size_width_in_max']) && $params['size_width_in_max'] != "") {
+                if ($whereCount > 0) {
+                    $where = $where . ' AND';
+                }
+                $where = $where . ' size_width_in BETWEEN 0 AND ' . $params['size_width_in_max'];
+                $whereCount++;
             }
 
-            if (!empty($params['size_length_ft_min']) && !empty($params['size_length_ft_max'])) {
+            if (isset($params['size_length_ft_min']) && $params['size_length_ft_min'] != "" && !empty($params['size_length_ft_max']) && $params['size_length_ft_max'] != "") {
                 if ($whereCount > 0) {
                     $where = $where . ' AND';
                 }
@@ -193,11 +205,23 @@ class Rug
                 $whereCount++;
             }
 
-            if (!empty($params['size_length_in_min']) && !empty($params['size_length_in_max'])) {
+            if (isset($params['size_length_in_min']) && $params['size_length_in_min'] != "" && isset($params['size_length_in_max']) && $params['size_length_in_max'] != "") {
                 if ($whereCount > 0) {
                     $where = $where . ' AND';
                 }
                 $where = $where . ' size_length_in BETWEEN ' . $params['size_length_in_min'] . ' AND ' . $params['size_length_in_max'] . '';
+                $whereCount++;
+            } else if (isset($params['size_length_in_min']) && $params['size_length_in_min'] != "" && empty($params['size_length_in_max'])) {
+                if ($whereCount > 0) {
+                    $where = $where . ' AND';
+                }
+                $where = $where . ' size_length_in BETWEEN ' . $params['size_length_in_min'] . ' AND 0';
+                $whereCount++;
+            } else if (empty($params['size_length_in_min']) && isset($params['size_length_in_max']) && $params['size_length_in_max'] != "") {
+                if ($whereCount > 0) {
+                    $where = $where . ' AND';
+                }
+                $where = $where . ' size_length_in BETWEEN 0 AND ' . $params['size_length_in_max'];
                 $whereCount++;
             }
 
@@ -264,6 +288,8 @@ class Rug
         } else {
             $where = '';
         }
+
+        // echo $where . '<br>';
 
 
         $limitQuery = ($limit != null) ? ' LIMIT ' . $offset . ', ' . $limit : '';

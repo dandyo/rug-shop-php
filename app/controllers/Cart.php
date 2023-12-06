@@ -87,6 +87,7 @@ class Cart extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
                 'name' => trim($_POST['name']),
+                'company' => trim($_POST['company']),
                 'email' => trim($_POST['email']),
                 'phone' => trim($_POST['phone']),
                 'address1' => trim($_POST['address1']),
@@ -175,6 +176,7 @@ class Cart extends Controller
 
             $email_body .= '<h4>Here are the details:</h4>
             <p>Name:  ' . $data['name'] . '<br>
+            Company name: ' . $data['company'] . '<br>
             Email: ' . $data['email'] . '<br>
             Phone: ' . $data['phone'] . '<br>
             Address: ' . $data['address1'] . ', ' . $data['address2'] . ', ' . $data['city'] . ', ' . $data['state'] . ' ' . $data['zip'] . '<br>

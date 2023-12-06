@@ -10,7 +10,7 @@
 <div class="py-4 py-md-5 bg-lgrey2">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-lg-7">
+            <div class="col-lg col-lg-7">
                 <p class="d-flex align-item-center"><a href="/shop"><span class="icon icon-chevron-thin-left"></span> Back to shop</a></p>
                 <div class="row mb-4">
                     <div class="col-md-6 mb-4 mb-md-0">
@@ -126,8 +126,9 @@
                 </div>
 
             </div>
-
-            <?php require APPROOT . '/views/inc/cart.php'; ?>
+            <div class="col-md-auto col-xxl-auto">
+                <?php require APPROOT . '/views/inc/cart.php'; ?>
+            </div>
         </div>
         <?php require APPROOT . '/views/inc/cart-toggle.php'; ?>
     </div>

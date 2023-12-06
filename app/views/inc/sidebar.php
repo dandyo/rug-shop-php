@@ -36,33 +36,33 @@ $countries = json_decode($json, TRUE);
                                             <div class="col">
                                                 <span class="text-center d-block">Min</span>
                                                 <div class="row gx-2">
-                                                    <div class="col pe-1">
+                                                    <div class="col">
                                                         <span class="d-block mb-1 text-center">ft.</span>
                                                         <div class="quantity">
                                                             <input type="number" class="form-control" name="size_width_ft_min" min="0" step="1" value="<?= (isset($_GET['size_width_ft_min']) && !empty($_GET['size_width_ft_min'])) ? $_GET['size_width_ft_min'] : '' ?>" />
                                                         </div>
                                                     </div>
-                                                    <div class="col ps-1">
+                                                    <div class="col">
                                                         <span class="d-block mb-1 text-center">in.</span>
                                                         <div class="quantity">
-                                                            <input type="number" class="form-control" name="size_width_in_min" min="0" max="11" value="<?= (isset($_GET['size_width_in_min']) && !empty($_GET['size_width_in_min'])) ? $_GET['size_width_in_min'] : '' ?>" />
+                                                            <input type="number" class="form-control" name="size_width_in_min" min="0" max="11" value="<?= (isset($_GET['size_width_in_min']) && ($_GET['size_width_in_min'] !== '')) ? $_GET['size_width_in_min'] : '' ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col ps-0">
+                                            <div class="col">
                                                 <span class="text-center d-block">Max</span>
-                                                <div class="d-flex">
-                                                    <div class="pe-1">
+                                                <div class="row gx-2">
+                                                    <div class="col">
                                                         <span class="d-block mb-1 text-center">ft.</span>
                                                         <div class="quantity">
                                                             <input type="number" class="form-control" name="size_width_ft_max" min="0" value="<?= (isset($_GET['size_width_ft_max']) && !empty($_GET['size_width_ft_max'])) ? $_GET['size_width_ft_max'] : '' ?>" />
                                                         </div>
                                                     </div>
-                                                    <div class="ps-1">
+                                                    <div class="col">
                                                         <span class="d-block mb-1 text-center">in.</span>
                                                         <div class="quantity">
-                                                            <input type="number" class="form-control" name="size_width_in_max" min="0" max="11" value="<?= (isset($_GET['size_width_in_max']) && !empty($_GET['size_width_in_max'])) ? $_GET['size_width_in_max'] : '' ?>" />
+                                                            <input type="number" class="form-control" name="size_width_in_max" min="0" max="11" value="<?= (isset($_GET['size_width_in_max']) && $_GET['size_width_in_max'] !== '') ? $_GET['size_width_in_max'] : '' ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -76,36 +76,36 @@ $countries = json_decode($json, TRUE);
                                     </div>
                                     <div class="card-body p-2">
                                         <div class="row align-items-center gx-2">
-                                            <div class="col ps-0">
+                                            <div class="col">
                                                 <span class="text-center d-block">Min</span>
-                                                <div class="d-flex">
-                                                    <div class="pe-1">
+                                                <div class="row gx-2">
+                                                    <div class="col">
                                                         <span class="d-block mb-1 text-center">ft.</span>
                                                         <div class="quantity">
                                                             <input type="number" class="form-control" name="size_length_ft_min" min="0" value="<?= (isset($_GET['size_length_ft_min']) && !empty($_GET['size_length_ft_min'])) ? $_GET['size_length_ft_min'] : '' ?>" />
                                                         </div>
                                                     </div>
-                                                    <div class="ps-1">
+                                                    <div class="col">
                                                         <span class="d-block mb-1 text-center">in.</span>
                                                         <div class="quantity">
-                                                            <input type="number" class="form-control" name="size_length_in_min" min="0" max="11" value="<?= (isset($_GET['size_length_in_min']) && !empty($_GET['size_length_in_min'])) ? $_GET['size_length_in_min'] : '' ?>" />
+                                                            <input type="number" class="form-control" name="size_length_in_min" min="0" max="11" value="<?= (isset($_GET['size_length_in_min']) && $_GET['size_length_in_min'] !== '') ? $_GET['size_length_in_min'] : '' ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col ps-0">
+                                            <div class="col">
                                                 <span class="text-center d-block">Max</span>
-                                                <div class="d-flex">
-                                                    <div class="pe-1">
+                                                <div class="row gx-2">
+                                                    <div class="col">
                                                         <span class="d-block mb-1 text-center">ft.</span>
                                                         <div class="quantity">
                                                             <input type="number" class="form-control" name="size_length_ft_max" min="0" value="<?= (isset($_GET['size_length_ft_max']) && !empty($_GET['size_length_ft_max'])) ? $_GET['size_length_ft_max'] : '' ?>" />
                                                         </div>
                                                     </div>
-                                                    <div class="ps-1">
+                                                    <div class="col">
                                                         <span class="d-block mb-1 text-center">in.</span>
                                                         <div class="quantity">
-                                                            <input type="number" class="form-control" name="size_length_in_max" min="0" max="11" value="<?= (isset($_GET['size_length_in_max']) && !empty($_GET['size_length_in_max'])) ? $_GET['size_length_in_max'] : '' ?>" />
+                                                            <input type="number" class="form-control" name="size_length_in_max" min="0" max="11" value="<?= (isset($_GET['size_length_in_max']) && $_GET['size_length_in_max'] !== '') ? $_GET['size_length_in_max'] : '' ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
