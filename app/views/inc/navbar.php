@@ -6,7 +6,7 @@
             <div class="navbar-wrap">
                 <div class="btns-wrap">
                     <a href="tel:(480) 947-4822" class="btn btn-white-outline"><span class="icon-phone"></span> (480) 947-4822</a>
-                    <a href="#" class="btn btn-white-outline" data-fancybox data-src="#newsletter">Join Our Newsletter</a>
+                    <a href="/newsletter.html" class="btn btn-white-outline" data-fancybox data-type="ajax" data-filter="#newsletter">Join Our Newsletter</a>
                     <a href="/docs/A Design Primer.pdf" class="btn btn-white-outline" target="_blank">Design Primer</a>
                 </div>
 
@@ -26,7 +26,7 @@
                             <a class="nav-link" href="#" title="About Us" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/about.html" title="About">About</a></li>
-                                <li><a class="dropdown-item" href="weaving-process.html" title="The Weaving Process">The Weaving Process</a></li>
+                                <li><a class="dropdown-item" href="/weaving-process.html" title="The Weaving Process">The Weaving Process</a></li>
                                 <li><a class="dropdown-item" href="/travel.html" title="Travel">Travel</a></li>
                                 <li><a class="dropdown-item" href="/gallery.html" title="Gallery">Gallery</a></li>
                             </ul>

@@ -63,35 +63,6 @@
     </div>
 </footer>
 
-<div id="newsletter" style="display:none; max-width: 800px;padding: 0;width: 100%;">
-    <div class="container-fluid w-100">
-        <div class="row">
-            <div class="col-md-6 p-4">
-                <h3 class="font2 mb-4 text-center">Subscribe</h3>
-                <form id="subscribeForm" method="post" action="mail/subscribe.php" novalidate>
-                    <div class="form-group mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                        <p class="help-block text-danger red mb-0"></p>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                        <p class="help-block text-danger red mb-0"></p>
-                    </div>
-                    <div id="success2"></div>
-                    <div>
-                        <input type="submit" value="Subscribe" id="submitBtn2" class="btn btn-brown">
-                    </div>
-                    <input type="hidden" id="token2" name="token">
-                </form>
-            </div>
-            <div class="col-md-6" style="background: url(/images/misc/banner-1.JPG) no-repeat center center;background-size: cover;">
-            </div>
-        </div>
-    </div>
-</div>
-
 <a href="#top" class="totop">
     <i class="icon-angle-up"></i>
     <span>To Top</span>
@@ -101,28 +72,7 @@
 <script src="<?php echo MAINURLROOT; ?>js/script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="<?php echo MAINURLROOT; ?>js/jqBootstrapValidation.js"></script>
-<script src="<?php echo MAINURLROOT; ?>js/subscribe.js"></script>
 <script src="https://www.google.com/recaptcha/api.js?render=6LeoZbUoAAAAAOP9GCudF5W0vdGSpF130_xqMbfy"></script>
-<script>
-    grecaptcha.ready(function () {
-        grecaptcha.execute('6LeoZbUoAAAAAOP9GCudF5W0vdGSpF130_xqMbfy', {
-            action: 'contact'
-        }).then(function (token) {
-            document.getElementById("token2").value = token;
-            document.getElementById('submitBtn2').disabled = false;
-        });
-        // refresh token every minute to prevent expiration
-        setInterval(function () {
-            grecaptcha.execute('6LeoZbUoAAAAAOP9GCudF5W0vdGSpF130_xqMbfy', {
-                action: 'contact'
-            }).then(function (token) {
-                // console.log( 'refreshed token:', token );
-                document.getElementById("token2").value = token;
-            });
-        }, 60000);
-    });
-</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYFTDRF39B"></script>
 <script>

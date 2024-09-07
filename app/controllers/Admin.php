@@ -50,8 +50,8 @@ class Admin extends Controller
                 $data['image_err'] = 'Please select image';
             } else {
                 try {
-                    $maxsize = 524288; //maximum size of allowed image being uploaded (around half MB)
-                    $maxwidth = 512; //maximum width of allowed image dimension in pixels
+                    $maxsize = 5242880; //maximum size of allowed image being uploaded (around half MB)
+                    $maxwidth = 700; //maximum width of allowed image dimension in pixels
 
                     // $data['image_err'] = $data["image"]["name"];
                     if ($data["image"]["size"] == 0) {

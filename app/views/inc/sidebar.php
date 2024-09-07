@@ -24,7 +24,25 @@ $countries = json_decode($json, TRUE);
                             Size
                         </button>
                     </h2>
-                    <div id="collapse2" class="accordion-collapse collapse <?= (isset($_GET['size_width_ft_min']) && !empty($_GET['size_width_ft_min'])) ? 'show' : ''; ?>">
+                    <?php
+                        $size_acc = '';
+                        if(isset($_GET['size_width_ft_min']) && !empty($_GET['size_width_ft_min'])) {
+                            $size_acc = 'show';
+                        }
+                        if(isset($_GET['size_width_ft_max']) && !empty($_GET['size_width_ft_max'])) {
+                            $size_acc = 'show';
+                        }
+                        if(isset($_GET['size_width_in_min']) && !empty($_GET['size_width_in_min'])) {
+                            $size_acc = 'show';
+                        }
+                        if(isset($_GET['size_length_ft_min']) && !empty($_GET['size_length_ft_min'])) {
+                            $size_acc = 'show';
+                        }
+                        if(isset($_GET['size_length_in_min']) && !empty($_GET['size_length_in_min'])) {
+                            $size_acc = 'show';
+                        }
+                    ?>
+                    <div id="collapse2" class="accordion-collapse collapse <?=$size_acc ?>">
                         <div class="accordion-body">
                             <div>
                                 <div class="card mb-3">

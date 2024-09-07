@@ -6,7 +6,7 @@ const IMAGE_HANDLERS = [
     IMAGETYPE_JPEG => [
         'load' => 'imagecreatefromjpeg',
         'save' => 'imagejpeg',
-        'quality' => 70
+        'quality' => 100
     ],
     IMAGETYPE_PNG => [
         'load' => 'imagecreatefrompng',

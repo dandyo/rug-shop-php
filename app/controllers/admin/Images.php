@@ -27,8 +27,8 @@ class Images extends Controller
             // $num_files = count($_FILES['file']['name']);
 
             $file = array();
-            $maxsize = 500;
-            $maxwidth = 500;
+            $maxsize = 5242880;
+            $maxwidth = 700;
 
             $img = $_FILES['file']['name'];
 

@@ -402,12 +402,12 @@ input[type=number]::-webkit-outer-spin-button {
 .image-slider-wrap {
     position: relative;
 
-    .image-slider-item {
-        img {
-            aspect-ratio: 2/2.5;
-            object-fit: cover;
-        }
-    }
+    // .image-slider-item {
+    //     img {
+    //         aspect-ratio: 2/2.5;
+    //         object-fit: cover;
+    //     }
+    // }
 
     .tns-nav {
         text-align: center;
